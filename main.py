@@ -4,9 +4,6 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-
-app = Flask(__name__)
-
 # --- LOGICA FISSA: segno → elemento → colore → rune (non invertire) ---
 
 COLORI = {
