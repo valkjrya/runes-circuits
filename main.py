@@ -128,6 +128,12 @@ def rune():
     }
 
     return corsify(jsonify(payload))
+@app.route("/")
+def home():
+    return jsonify({
+        "status": "Rune Circuits attivo",
+        "message": "L'oracolo è in ascolto"
+    })
 
 if __name__ == "__main__":
     # Cloud Run ascolta su $PORT
