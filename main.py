@@ -12,6 +12,9 @@ TITLE = "RUNES & CIRCUITS"
 SUBTITLE = "Rune Parlanti"
 CTA_TEXT = "RICEVI LA DIVINAZIONE"
 
+# =========================
+# DATI BASE
+# =========================
 ELEMENTI = ["TERRA", "ACQUA", "ARIA", "FUOCO", "SPAZIO"]
 
 COLORI = {
@@ -30,7 +33,10 @@ SEGNI = {
     "SPAZIO": ["Acquario", "Pesci", "Sagittario"],
 }
 
-RUNE = {
+# =========================
+# RUNE + SIMBOLI
+# =========================
+RUNE_PER_ELEMENTO = {
     "TERRA": ["Fehu", "Uruz", "Berkano", "Jera"],
     "ACQUA": ["Laguz", "Perthro", "Eihwaz", "Isa"],
     "ARIA": ["Ansuz", "Raido", "Gebo", "Wunjo"],
@@ -45,27 +51,90 @@ RUNE_SYMBOL = {
     "Berkano":"ᛒ","Laguz":"ᛚ","Dagaz":"ᛞ","Othila":"ᛟ"
 }
 
-MESSAGGI = {
-    "TERRA": [
-        ("Metti ordine: ciò che è semplice diventa forte.",
-         "Create order: what is simple becomes strong.")
-    ],
-    "ACQUA": [
-        ("Lascia scorrere. Una risposta arriva senza sforzo.",
-         "Let it flow. An answer arrives without force.")
-    ],
-    "ARIA": [
-        ("Una nuova idea chiede spazio. Seguila.",
-         "A new idea asks for space. Follow it.")
-    ],
-    "FUOCO": [
-        ("Accendi il coraggio: una scelta ti libera.",
-         "Ignite courage: one choice sets you free.")
-    ],
-    "SPAZIO": [
-        ("Sospendi il giudizio: il vuoto è una porta.",
-         "Suspend judgment: the void is a door.")
-    ],
+# =========================
+# MESSAGGI UNICI PER RUNA
+# =========================
+RUNA_MESSAGES = {
+    "Fehu": (
+        "Ciò che possiedi cresce se lo condividi con consapevolezza.",
+        "What you hold grows when shared with awareness."
+    ),
+    "Uruz": (
+        "La forza è già in te: usala senza forzarla.",
+        "Strength is already within you: use it without strain."
+    ),
+    "Berkano": (
+        "Proteggi ciò che nasce, anche se è fragile.",
+        "Protect what is being born, even if it is fragile."
+    ),
+    "Jera": (
+        "Ogni cosa arriva nel tempo giusto. Abbi fiducia.",
+        "Everything arrives in its right time. Trust the cycle."
+    ),
+    "Laguz": (
+        "Lascia scorrere. La risposta arriva senza sforzo.",
+        "Let it flow. The answer arrives without force."
+    ),
+    "Perthro": (
+        "Il mistero non va risolto: va attraversato.",
+        "The mystery is not to be solved, but crossed."
+    ),
+    "Eihwaz": (
+        "Rimani nel passaggio: la trasformazione è in atto.",
+        "Stay in the passage: transformation is underway."
+    ),
+    "Isa": (
+        "Fermati. Nel silenzio trovi chiarezza.",
+        "Pause. In stillness, clarity emerges."
+    ),
+    "Ansuz": (
+        "Ascolta il messaggio: sta già parlando.",
+        "Listen to the message: it is already speaking."
+    ),
+    "Raido": (
+        "Il viaggio è iniziato: muoviti con intenzione.",
+        "The journey has begun: move with intention."
+    ),
+    "Gebo": (
+        "Dare e ricevere sono lo stesso gesto.",
+        "Giving and receiving are the same movement."
+    ),
+    "Wunjo": (
+        "La gioia arriva quando smetti di cercarla.",
+        "Joy arrives when you stop chasing it."
+    ),
+    "Kenaz": (
+        "Una scintilla illumina ciò che era nascosto.",
+        "A spark reveals what was hidden."
+    ),
+    "Sowilo": (
+        "La luce è dalla tua parte. Avanza.",
+        "The light is on your side. Move forward."
+    ),
+    "Tiwaz": (
+        "Accendi il coraggio: una scelta ti libera.",
+        "Ignite courage: one choice sets you free."
+    ),
+    "Hagalaz": (
+        "Il cambiamento rompe ciò che non serve più.",
+        "Change breaks what no longer serves."
+    ),
+    "Algiz": (
+        "Sei protetta mentre resti fedele a te.",
+        "You are protected while staying true to yourself."
+    ),
+    "Dagaz": (
+        "Una nuova visione si apre ora.",
+        "A new vision opens now."
+    ),
+    "Nauthiz": (
+        "La necessità rivela la via.",
+        "Necessity reveals the path."
+    ),
+    "Othila": (
+        "Riconosci ciò che ti appartiene davvero.",
+        "Recognize what truly belongs to you."
+    ),
 }
 
 # =========================
@@ -74,13 +143,13 @@ MESSAGGI = {
 def genera_oracolo(elemento):
     elemento = elemento if elemento in ELEMENTI else random.choice(ELEMENTI)
 
-    # 🔑 chiave SEMPRE diversa (millisecondi)
+    # seed sempre diverso
     seed = f"{dt.datetime.utcnow().isoformat()}:{random.random()}"
     rng = random.Random(seed)
 
-    runa = rng.choice(RUNE[elemento])
+    runa = rng.choice(RUNE_PER_ELEMENTO[elemento])
     simbolo = RUNE_SYMBOL.get(runa, "ᚱ")
-    msg_it, msg_en = rng.choice(MESSAGGI[elemento])
+    msg_it, msg_en = RUNA_MESSAGES[runa]
 
     return {
         "elemento": elemento,
@@ -91,17 +160,16 @@ def genera_oracolo(elemento):
         "messaggio_it": msg_it,
         "messaggio_en": msg_en,
         "seed": seed,
-        "ts": dt.datetime.utcnow().isoformat(timespec="seconds")+"Z"
+        "ts": dt.datetime.utcnow().isoformat(timespec="seconds") + "Z"
     }
 
 # =========================
-# API JSON
+# API
 # =========================
 @app.get("/oracle")
 def oracle():
     elemento = request.args.get("elemento", "RANDOM").upper()
-    data = genera_oracolo(elemento)
-    return jsonify(data)
+    return jsonify(genera_oracolo(elemento))
 
 # =========================
 # UI
@@ -132,14 +200,14 @@ font-family:system-ui,Segoe UI,Arial;">
 
 <h2>Elemento: {e(data["elemento"])}</h2>
 
-<div style="display:flex;align-items:center;gap:12px;">
-  <div id="runa-symbol" style="font-size:40px;">{e(data["runa_symbol"])}</div>
-  <div id="runa-name" style="font-size:34px;font-weight:bold;">
+<div style="display:flex;align-items:center;gap:14px;">
+  <div id="runa-symbol" style="font-size:42px;">{e(data["runa_symbol"])}</div>
+  <div id="runa-name" style="font-size:36px;font-weight:bold;">
     {e(data["runa"])}
   </div>
 </div>
 
-<div id="msg-it" style="margin-top:16px;font-size:18px;">
+<div id="msg-it" style="margin-top:16px;font-size:20px;">
   {e(data["messaggio_it"])}
 </div>
 
@@ -149,9 +217,9 @@ font-family:system-ui,Segoe UI,Arial;">
 
 <a href="#" id="cta"
 style="display:inline-block;margin-top:28px;
-padding:16px 26px;border-radius:999px;
+padding:16px 28px;border-radius:999px;
 background:#ffd27a;color:#1a1206;
-font-weight:bold;text-decoration:none;">
+font-weight:900;text-decoration:none;">
 {CTA_TEXT}
 </a>
 
