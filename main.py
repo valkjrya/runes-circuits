@@ -20,6 +20,23 @@ COLORI = {
     "SPAZIO": "Blu / Blu",
 }
 
+# English labels (solo visual)
+ELEMENTI_EN = {
+    "TERRA": "EARTH",
+    "ACQUA": "WATER",
+    "ARIA": "AIR",
+    "FUOCO": "FIRE",
+    "SPAZIO": "SPACE",
+}
+
+COLORI_EN = {
+    "TERRA": "Yellow / Ocher",
+    "ACQUA": "White / Gold",
+    "ARIA": "Green / Green",
+    "FUOCO": "Red / Red",
+    "SPAZIO": "Blue / Blue",
+}
+
 SEGNI = {
     "TERRA": ["Toro", "Vergine", "Capricorno"],
     "ACQUA": ["Cancro", "Scorpione", "Pesci"],
@@ -86,7 +103,7 @@ RUNE_PER_ELEMENTO = {
     "SPAZIO": list(map(canon_rune, ["Berkana", "Algiz", "Gebo", "Ehwaz", "Fehu"])),
 }
 
-# ✅ Frasi bilingue vere (IT sopra, EN sotto)
+# ✅ Frasi bilingue vere
 RUNE_VARIANTS = {
     "Othila": [
         ("Riconosci ciò che ti appartiene davvero.", "Claim what truly belongs to you."),
@@ -235,10 +252,6 @@ def _norm_elemento(x: str) -> str:
     return random.choice(ELEMENTI)
 
 def genera_oracolo(elemento: str, nonce: str | None = None) -> dict:
-    """
-    - nonce None      -> oracolo del giorno (stabile per elemento)
-    - nonce presente  -> cambia ad ogni click (seed diverso)
-    """
     elemento = _norm_elemento(elemento)
     oggi = dt.date.today().isoformat()
 
@@ -256,9 +269,15 @@ def genera_oracolo(elemento: str, nonce: str | None = None) -> dict:
     else:
         msg_it, msg_en = rng.choice(pairs)
 
+    el_en = ELEMENTI_EN.get(elemento, elemento)
+    col_it = COLORI.get(elemento, "")
+    col_en = COLORI_EN.get(elemento, col_it)
+
     return {
         "elemento": elemento,
-        "colore": COLORI.get(elemento, ""),
+        "elemento_en": el_en,
+        "colore": col_it,
+        "colore_en": col_en,
         "segni": SEGNI.get(elemento, []),
         "runa": runa,
         "runa_symbol": simbolo,
@@ -302,7 +321,10 @@ def view():
   h1{margin:0;}
   .sub{opacity:.85;text-align:center;margin-top:6px;}
 
-  .meta{opacity:.75;font-size:14px;text-align:center;margin-top:10px;}
+  /* Meta (ora bilingue ma stessa grafica) */
+  .meta{opacity:.75;font-size:14px;text-align:center;margin-top:10px;line-height:1.35;}
+  .meta .en{display:block;opacity:.70;font-size:13px;margin-top:4px;}
+
   .rline{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:16px;position:relative;}
   #runa-symbol{
     font-size:66px;line-height:1;
@@ -312,7 +334,6 @@ def view():
     position:relative;
   }
 
-  /* Cerchi energetici (portale) */
   .ring{
     position:absolute;
     left:50%; top:50%;
@@ -336,7 +357,6 @@ def view():
     100% {opacity:0; transform:translate(-50%,-50%) scale(10);}
   }
 
-  /* Particelle leggere */
   .spark{
     position:absolute;
     left:50%; top:50%;
@@ -354,7 +374,6 @@ def view():
     100% {opacity:0; transform:translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.2);}
   }
 
-  /* Glow teatrale sulla runa */
   .glow #runa-symbol{
     filter: brightness(1.25);
     transform: scale(1.03);
@@ -387,6 +406,7 @@ def view():
     <div class="card">
       <div class="meta">
         Elemento: <b id="el">__ELEMENTO__</b> — Colore: <span id="col">__COLORE__</span>
+        <span class="en">Element: <b id="el-en">__ELEMENTO_EN__</b> — Color: <span id="col-en">__COLORE_EN__</span></span>
       </div>
 
       <div class="rline" id="rline">
@@ -419,6 +439,9 @@ def view():
   const btn   = document.getElementById("cta");
   const el    = document.getElementById("el");
   const col   = document.getElementById("col");
+  const elEn  = document.getElementById("el-en");
+  const colEn = document.getElementById("col-en");
+
   const rName = document.getElementById("runa-name");
   const rSym  = document.getElementById("runa-symbol");
   const msgIt = document.getElementById("msg-it");
@@ -482,15 +505,18 @@ def view():
 
       el.textContent    = d.elemento;
       col.textContent   = d.colore || "";
+      elEn.textContent  = d.elemento_en || d.elemento;
+      colEn.textContent = d.colore_en || (d.colore || "");
+
       rName.textContent = d.runa;
       rSym.textContent  = d.runa_symbol;
 
-      msgIt.textContent = d.messaggio_it; // IT sopra
-      msgEn.textContent = d.messaggio_en; // EN sotto (ORA VERO)
+      msgIt.textContent = d.messaggio_it;
+      msgEn.textContent = d.messaggio_en;
 
       seed.textContent  = d.seed;
 
-      speakItalian(d.messaggio_it); // audio solo IT
+      speakItalian(d.messaggio_it);
     }catch(err){
       console.error(err);
       msgIt.textContent = "Errore nel contattare l'oracolo. Riprova.";
@@ -514,7 +540,9 @@ def view():
             .replace("__SUBTITLE__", e(SUBTITLE))
             .replace("__CTA__", e(CTA_TEXT))
             .replace("__ELEMENTO__", e(data["elemento"]))
+            .replace("__ELEMENTO_EN__", e(data["elemento_en"]))
             .replace("__COLORE__", e(data["colore"]))
+            .replace("__COLORE_EN__", e(data["colore_en"]))
             .replace("__RUNA__", e(data["runa"]))
             .replace("__RUNA_SYMBOL__", e(data["runa_symbol"]))
             .replace("__MSG_IT__", e(data["messaggio_it"]))
