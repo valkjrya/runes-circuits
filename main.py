@@ -33,18 +33,20 @@ RUNE_SYMBOL = {
     "Wunjo": "ᚹ", "Hagalaz": "ᚺ", "Nauthiz": "ᚾ", "Isa": "ᛁ", "Jera": "ᛃ",
     "Eihwaz": "ᛇ", "Perthro": "ᛈ", "Algiz": "ᛉ", "Sowilo": "ᛋ", "Tiwaz": "ᛏ",
     "Berkano": "ᛒ", "Laguz": "ᛚ", "Dagaz": "ᛞ", "Othila": "ᛟ",
+    # ✅ aggiunte mancanti
+    "Ingwaz": "ᛜ",
+    "Mannaz": "ᛗ",
 }
 
-# ESATTAMENTE lo schema che vuoi tu
+# ✅ schema aggiornato: Ingwaz in TERRA, Mannaz in FUOCO
 RUNE_PER_ELEMENTO = {
-    "TERRA": ["Fehu", "Uruz", "Berkano", "Jera", "Othila"],
+    "TERRA": ["Fehu", "Uruz", "Berkano", "Jera", "Othila", "Ingwaz"],
     "ACQUA": ["Laguz", "Perthro", "Isa", "Eihwaz"],
     "ARIA": ["Ansuz", "Raido", "Gebo", "Wunjo"],
-    "FUOCO": ["Kenaz", "Sowilo", "Tiwaz", "Hagalaz", "Nauthiz"],
+    "FUOCO": ["Kenaz", "Sowilo", "Tiwaz", "Hagalaz", "Nauthiz", "Mannaz"],
     "SPAZIO": ["Dagaz", "Algiz", "Perthro", "Eihwaz"],
 }
 
-# Metti qui TUTTE le frasi per runa (puoi espandere liberamente)
 RUNE_VARIANTS_IT = {
     "Fehu": [
         "Ciò che possiedi cresce se lo condividi con consapevolezza.",
@@ -72,6 +74,14 @@ RUNE_VARIANTS_IT = {
         "Torna alla radice: lì c'è forza.",
         "Ciò che è tuo non si perde.",
     ],
+    # ✅ Ingwaz (TERRA)
+    "Ingwaz": [
+        "Il seme è pronto: ora può diventare vita.",
+        "Dentro di te sta maturando qualcosa di vero.",
+        "Chiudi un ciclo con dolcezza: è fertilità, non fine.",
+        "Radica l’intento: il futuro germoglia nel silenzio.",
+    ],
+
     "Laguz": [
         "Lascia scorrere. La risposta arriva senza sforzo.",
         "Non combattere la corrente: vai con lei.",
@@ -92,6 +102,7 @@ RUNE_VARIANTS_IT = {
         "Il limite è una soglia, non un muro.",
         "La trasformazione è già iniziata.",
     ],
+
     "Ansuz": [
         "Ascolta: la parola giusta arriva dal vento.",
         "Il messaggio è già qui: leggilo tra le righe.",
@@ -112,6 +123,7 @@ RUNE_VARIANTS_IT = {
         "Oggi il sorriso è già dentro.",
         "La gioia non si insegue: si respira.",
     ],
+
     "Kenaz": [
         "Una scintilla illumina ciò che era nascosto.",
         "Oggi vedi chiaro.",
@@ -137,6 +149,14 @@ RUNE_VARIANTS_IT = {
         "Oggi il bisogno ti guida.",
         "Sopravvivi: e poi fiorisci.",
     ],
+    # ✅ Mannaz (FUOCO)
+    "Mannaz": [
+        "La tua forza cresce quando ti ricordi chi sei.",
+        "Oggi scegli l’umano: presenza, verità, relazione.",
+        "Specchiati negli altri senza perderti.",
+        "Il coraggio più grande è essere autentici.",
+    ],
+
     "Dagaz": [
         "Una nuova visione si apre ora.",
         "Tra notte e giorno: scegli il risveglio.",
@@ -157,8 +177,8 @@ def _norm_elemento(x: str) -> str:
 
 def genera_oracolo(elemento: str, nonce: str | None = None) -> dict:
     """
-    - Se nonce è None -> oracolo del giorno (stabile)
-    - Se nonce è presente -> cambia ad ogni click (perché il seed cambia)
+    - nonce None  -> oracolo del giorno (stabile per elemento)
+    - nonce != None -> cambia ad ogni click (seed diverso)
     """
     elemento = _norm_elemento(elemento)
     oggi = dt.date.today().isoformat()
@@ -193,16 +213,14 @@ def genera_oracolo(elemento: str, nonce: str | None = None) -> dict:
 @app.get("/oracle")
 def oracle():
     elemento = request.args.get("elemento", "RANDOM")
-    nonce = request.args.get("nonce")  # <-- questo è ciò che sblocca "una runa diversa ad ogni click"
+    nonce = request.args.get("nonce")
     return jsonify(genera_oracolo(elemento, nonce=nonce))
 
 @app.get("/")
 @app.get("/view")
 def view():
     elemento = request.args.get("elemento", "RANDOM")
-
-    # In /view NON passiamo nonce: così l'NFC mostra l'oracolo del giorno
-    data = genera_oracolo(elemento, nonce=None)
+    data = genera_oracolo(elemento, nonce=None)  # oracolo quotidiano al primo caricamento
 
     html = """<!doctype html>
 <html lang="it">
@@ -268,7 +286,6 @@ def view():
     btn.textContent = "… in ascolto";
     try{
       const elemento = el.textContent || "RANDOM";
-      // nonce = Date.now() => ad ogni click seed diverso => runa diversa
       const res = await fetch("/oracle?elemento=" + encodeURIComponent(elemento) + "&nonce=" + Date.now());
       const d = await res.json();
       el.textContent    = d.elemento;
