@@ -49,7 +49,6 @@ RUNE_VARIANTS_IT = {
         "La vera ricchezza è invisibile: inizia dal cuore.",
         "Un gesto generoso oggi, un raccolto domani.",
         "Non trattenere: l'abbondanza ama il flusso.",
-        "La porta della prosperità si apre con gratitudine.",
         "Oggi semina fiducia: il raccolto è vicino.",
     ],
     "Uruz": [
@@ -61,10 +60,10 @@ RUNE_VARIANTS_IT = {
     ],
     "Berkano": [
         "Proteggi ciò che nasce, anche se è fragile.",
-        "Un germoglio ha bisogno di te: coprilo.",
-        "Oggi custodisci il tuo sogno: non esporlo a tutti.",
         "La crescita lenta è la più forte.",
+        "Accogli il nuovo senza fretta.",
         "Lascia che fiorisca nel tuo silenzio.",
+        "Il seme che curi oggi ti salva domani.",
     ],
     "Jera": [
         "Ogni cosa arriva nel tempo giusto. Abbi fiducia.",
@@ -87,19 +86,19 @@ RUNE_VARIANTS_IT = {
         "Rimani nel passaggio: la trasformazione è in atto.",
         "Respira nel vuoto: lì nasce il nuovo.",
     ],
-    "Eihwaz": [
-        "Tra radice e cielo: sei il ponte.",
-        "Resisti senza irrigidirti: la via si apre.",
-        "La stabilità è un atto interiore.",
-        "Il limite è una soglia, non un muro.",
-        "La trasformazione è già iniziata.",
-    ],
     "Isa": [
         "Fermati. Nel silenzio trovi chiarezza.",
         "La pausa è potere.",
         "Non muoverti: ascolta il vuoto.",
         "Il gelo ti protegge da scelte impulsive.",
         "Lascia che la verità si sedimenti.",
+    ],
+    "Eihwaz": [
+        "Tra radice e cielo: sei il ponte.",
+        "Resisti senza irrigidirti: la via si apre.",
+        "La stabilità è un atto interiore.",
+        "Il limite è una soglia, non un muro.",
+        "La trasformazione è già iniziata.",
     ],
     "Ansuz": [
         "Ascolta: la parola giusta arriva dal vento.",
@@ -132,9 +131,9 @@ RUNE_VARIANTS_IT = {
     "Kenaz": [
         "Una scintilla illumina ciò che era nascosto.",
         "Oggi vedi chiaro.",
-        "Il fuoco interiore si accende.",
-        "Non temere l'ombra: portaci luce.",
         "Accendi la creatività e cambia il quadro.",
+        "Non temere l'ombra: portaci luce.",
+        "Il fuoco interiore sa la strada.",
     ],
     "Sowilo": [
         "La luce è dalla tua parte. Avanza.",
@@ -146,7 +145,7 @@ RUNE_VARIANTS_IT = {
     "Tiwaz": [
         "Accendi il coraggio: una scelta ti libera.",
         "Agisci con rettitudine: la via si apre.",
-        "Oggi scegli ciò che è giusto, non ciò che è facile.",
+        "Oggi scegli ciò che è giusto, non ciòche è facile.",
         "La decisione è la tua forza.",
         "La tua volontà è una lama pulita.",
     ],
@@ -156,6 +155,13 @@ RUNE_VARIANTS_IT = {
         "Nel caos c'è un ordine nascosto.",
         "Oggi la grandine pulisce l'aria.",
         "Non resistere al vero: trasformalo.",
+    ],
+    "Nauthiz": [
+        "La necessità rivela la via.",
+        "Oggi il bisogno ti guida.",
+        "La stretta è una lezione: ascoltala.",
+        "Sopravvivi: e poi fiorisci.",
+        "La fame di verità accende il passo.",
     ],
     "Algiz": [
         "Sei protetta mentre resti fedele a te.",
@@ -170,13 +176,6 @@ RUNE_VARIANTS_IT = {
         "Il buio finisce: cambia prospettiva.",
         "Tra notte e giorno: scegli il risveglio.",
         "La luce cambia tutto, anche te.",
-    ],
-    "Nauthiz": [
-        "La necessità rivela la via.",
-        "Oggi il bisogno ti guida.",
-        "La stretta è una lezione: ascoltala.",
-        "Sopravvivi: e poi fiorisci.",
-        "La fame di verità accende il passo.",
     ],
     "Othila": [
         "Riconosci ciò che ti appartiene davvero.",
@@ -227,44 +226,42 @@ def view():
     elemento = request.args.get("elemento", "RANDOM")
     data = genera_oracolo(elemento)
 
-    def e(x):
-        return escape(str(x))
-
-    html = f"""<!doctype html>
+    # niente f-string: così JS con {} non rompe Python
+    html = """<!doctype html>
 <html lang="it">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{e(TITLE)} — {e(SUBTITLE)}</title>
+<title>__TITLE__ — __SUBTITLE__</title>
 </head>
 <body style="margin:0;background:#020308;color:#f6f3ff;font-family:system-ui,Segoe UI,Arial;">
   <div style="max-width:900px;margin:40px auto;padding:24px;">
-    <h1 style="text-align:center;">✨ {e(SUBTITLE)}</h1>
-    <div style="opacity:.85;text-align:center;margin-top:-10px;">{e(TITLE)}</div>
+    <h1 style="text-align:center;">✨ __SUBTITLE__</h1>
+    <div style="opacity:.85;text-align:center;margin-top:-10px;">__TITLE__</div>
 
     <div style="margin-top:26px;padding:18px;border:1px solid rgba(255,255,255,.12);border-radius:16px;">
       <div style="display:flex;align-items:center;justify-content:center;gap:14px;">
-        <div id="runa-symbol" style="font-size:52px;line-height:1;">{e(data["runa_symbol"])}</div>
+        <div id="runa-symbol" style="font-size:52px;line-height:1;">__RUNA_SYMBOL__</div>
         <div>
           <div style="opacity:.75;font-size:14px;">
-            Elemento: <b id="el">{e(data["elemento"])}</b> — Colore: <span id="col">{e(data["colore"])}</span>
+            Elemento: <b id="el">__ELEMENTO__</b> — Colore: <span id="col">__COLORE__</span>
           </div>
-          <div id="runa-name" style="font-size:34px;font-weight:900;margin-top:4px;">{e(data["runa"])}</div>
+          <div id="runa-name" style="font-size:34px;font-weight:900;margin-top:4px;">__RUNA__</div>
         </div>
       </div>
 
-      <div id="msg-it" style="margin-top:18px;font-size:20px;text-align:center;">{e(data["messaggio_it"])}</div>
-      <div id="msg-en" style="opacity:.7;margin-top:8px;text-align:center;">{e(data["messaggio_en"])}</div>
+      <div id="msg-it" style="margin-top:18px;font-size:20px;text-align:center;">__MSG_IT__</div>
+      <div id="msg-en" style="opacity:.7;margin-top:8px;text-align:center;">__MSG_EN__</div>
 
       <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px;">
         <a href="#" id="cta"
            style="display:inline-block;padding:16px 28px;border-radius:999px;background:#ffd27a;color:#1a1206;font-weight:900;text-decoration:none;">
-          {e(CTA_TEXT)}
+          __CTA__
         </a>
       </div>
 
       <div style="opacity:.55;font-size:12px;margin-top:14px;text-align:center;">
-        Seed giornaliero: <span id="seed">{e(data["seed"])}</span>
+        Seed giornaliero: <span id="seed">__SEED__</span>
       </div>
     </div>
   </div>
@@ -308,7 +305,7 @@ def view():
       console.error(err);
       msgIt.textContent = "Errore nel contattare l'oracolo. Riprova.";
     }finally{
-      btn.textContent = "{e(CTA_TEXT)}";
+      btn.textContent = "__CTA__";
     }
   };
 })();
@@ -317,6 +314,23 @@ def view():
 </body>
 </html>
 """
+
+    def e(x):
+        return escape(str(x))
+
+    html = (
+        html.replace("__TITLE__", e(TITLE))
+            .replace("__SUBTITLE__", e(SUBTITLE))
+            .replace("__CTA__", e(CTA_TEXT))
+            .replace("__ELEMENTO__", e(data["elemento"]))
+            .replace("__COLORE__", e(data["colore"]))
+            .replace("__RUNA__", e(data["runa"]))
+            .replace("__RUNA_SYMBOL__", e(data["runa_symbol"]))
+            .replace("__MSG_IT__", e(data["messaggio_it"]))
+            .replace("__MSG_EN__", e(data["messaggio_en"]))
+            .replace("__SEED__", e(data["seed"]))
+    )
+
     return make_response(html)
 
 if __name__ == "__main__":
