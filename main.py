@@ -28,144 +28,170 @@ SEGNI = {
     "SPAZIO": ["Oltre i segni", "Tra le stelle", "Nel varco"],
 }
 
+# ✅ simboli (inclusi Thurisaz, Ingwaz, Ehwaz)
 RUNE_SYMBOL = {
-    "Fehu": "ᚠ", "Uruz": "ᚢ", "Ansuz": "ᚨ", "Raido": "ᚱ", "Kenaz": "ᚲ", "Gebo": "ᚷ",
-    "Wunjo": "ᚹ", "Hagalaz": "ᚺ", "Nauthiz": "ᚾ", "Isa": "ᛁ", "Jera": "ᛃ",
-    "Eihwaz": "ᛇ", "Perthro": "ᛈ", "Algiz": "ᛉ", "Sowilo": "ᛋ", "Tiwaz": "ᛏ",
-    "Berkano": "ᛒ", "Laguz": "ᛚ", "Dagaz": "ᛞ", "Othila": "ᛟ",
-    # ✅ aggiunte mancanti
-    "Ingwaz": "ᛜ",
+    "Fehu": "ᚠ",
+    "Uruz": "ᚢ",
+    "Thurisaz": "ᚦ",
+    "Ansuz": "ᚨ",
+    "Raido": "ᚱ",
+    "Kenaz": "ᚲ",
+    "Gebo": "ᚷ",
+    "Wunjo": "ᚹ",
+    "Hagalaz": "ᚺ",
+    "Nauthiz": "ᚾ",
+    "Isa": "ᛁ",
+    "Jera": "ᛃ",
+    "Eihwaz": "ᛇ",
+    "Perthro": "ᛈ",
+    "Algiz": "ᛉ",
+    "Sowilo": "ᛋ",
+    "Tiwaz": "ᛏ",
+    "Berkana": "ᛒ",
+    "Ehwaz": "ᛖ",
     "Mannaz": "ᛗ",
+    "Laguz": "ᛚ",
+    "Ingwaz": "ᛜ",
+    "Dagaz": "ᛞ",
+    "Othila": "ᛟ",
 }
 
-# ✅ schema aggiornato: Ingwaz in TERRA, Mannaz in FUOCO
+# ✅ ORDINE ESATTO che hai richiesto
 RUNE_PER_ELEMENTO = {
-    "TERRA": ["Fehu", "Uruz", "Berkano", "Jera", "Othila", "Ingwaz"],
-    "ACQUA": ["Laguz", "Perthro", "Isa", "Eihwaz"],
-    "ARIA": ["Ansuz", "Raido", "Gebo", "Wunjo"],
-    "FUOCO": ["Kenaz", "Sowilo", "Tiwaz", "Hagalaz", "Nauthiz", "Mannaz"],
-    "SPAZIO": ["Dagaz", "Algiz", "Perthro", "Eihwaz"],
+    "TERRA": ["Algiz", "Eihwaz", "Uruz", "Wunjo", "Berkana", "Othila", "Isa", "Jera"],
+    "ACQUA": ["Perthro", "Laguz", "Ingwaz", "Raido", "Gebo", "Hagalaz"],
+    "ARIA": ["Algiz", "Ansuz", "Tiwaz", "Berkana", "Ehwaz"],
+    "FUOCO": ["Dagaz", "Othila", "Fehu", "Thurisaz", "Nauthiz", "Eihwaz"],
+    "SPAZIO": ["Algiz", "Dagaz", "Perthro", "Eihwaz"],
 }
 
+# ✅ frasi per tutte le rune usate nelle liste sopra
 RUNE_VARIANTS_IT = {
-    "Fehu": [
-        "Ciò che possiedi cresce se lo condividi con consapevolezza.",
-        "La vera ricchezza è invisibile: inizia dal cuore.",
-        "Non trattenere: l'abbondanza ama il flusso.",
-        "Oggi semina fiducia: il raccolto è vicino.",
+    "Algiz": [
+        "Sei protetta mentre resti fedele a te.",
+        "Oggi lo scudo è la tua verità.",
+        "Cammina con dignità: la protezione ti segue.",
+        "Non temere: ciò che è tuo è custodito.",
+    ],
+    "Eihwaz": [
+        "Tra radice e cielo: sei il ponte.",
+        "Resisti senza irrigidirti: la via si apre.",
+        "Il limite è una soglia, non un muro.",
+        "Oggi la trasformazione lavora in profondità.",
     ],
     "Uruz": [
         "La forza è già in te: usala senza forzarla.",
         "Oggi un passo deciso basta a spostare montagne.",
         "Forza non è muscoli: è presenza totale.",
+        "Il tuo istinto è la bussola migliore.",
     ],
-    "Berkano": [
+    "Wunjo": [
+        "La gioia arriva quando smetti di inseguirla.",
+        "Oggi il sorriso è già dentro.",
+        "La gioia non si insegue: si respira.",
+        "Sii felice senza motivo: è potere puro.",
+    ],
+    "Berkana": [
         "Proteggi ciò che nasce, anche se è fragile.",
         "La crescita lenta è la più forte.",
+        "Accogli il nuovo senza fretta.",
         "Lascia che fiorisca nel tuo silenzio.",
-    ],
-    "Jera": [
-        "Ogni cosa arriva nel tempo giusto. Abbi fiducia.",
-        "La ruota gira lenta, ma gira.",
-        "Oggi il tempo lavora per te.",
     ],
     "Othila": [
         "Riconosci ciò che ti appartiene davvero.",
         "Torna alla radice: lì c'è forza.",
         "Ciò che è tuo non si perde.",
+        "Onora l'eredità, ma crea il tuo ramo.",
     ],
-    # ✅ Ingwaz (TERRA)
-    "Ingwaz": [
-        "Il seme è pronto: ora può diventare vita.",
-        "Dentro di te sta maturando qualcosa di vero.",
-        "Chiudi un ciclo con dolcezza: è fertilità, non fine.",
-        "Radica l’intento: il futuro germoglia nel silenzio.",
+    "Isa": [
+        "Fermati. Nel silenzio trovi chiarezza.",
+        "La pausa è potere.",
+        "Non muoverti: ascolta il vuoto.",
+        "Lascia che la verità si sedimenti.",
     ],
-
-    "Laguz": [
-        "Lascia scorrere. La risposta arriva senza sforzo.",
-        "Non combattere la corrente: vai con lei.",
-        "L'intuizione è la tua corrente.",
+    "Jera": [
+        "Ogni cosa arriva nel tempo giusto. Abbi fiducia.",
+        "La ruota gira lenta, ma gira.",
+        "Oggi il tempo lavora per te.",
+        "Non forzare: la stagione sa.",
     ],
     "Perthro": [
         "Il mistero non va risolto: va attraversato.",
         "Accetta l'ignoto: è il tuo alleato.",
         "Un velo si alza piano: guarda.",
+        "Rimani nel passaggio: la trasformazione è in atto.",
     ],
-    "Isa": [
-        "Fermati. Nel silenzio trovi chiarezza.",
-        "La pausa è potere.",
-        "Lascia che la verità si sedimenti.",
+    "Laguz": [
+        "Lascia scorrere. La risposta arriva senza sforzo.",
+        "Non combattere la corrente: vai con lei.",
+        "L'intuizione è la tua corrente.",
+        "Non afferrare: l'onda ti porta.",
     ],
-    "Eihwaz": [
-        "Tra radice e cielo: sei il ponte.",
-        "Il limite è una soglia, non un muro.",
-        "La trasformazione è già iniziata.",
-    ],
-
-    "Ansuz": [
-        "Ascolta: la parola giusta arriva dal vento.",
-        "Il messaggio è già qui: leggilo tra le righe.",
-        "Parla solo quando senti presenza.",
+    "Ingwaz": [
+        "Il seme è pronto: ora può diventare vita.",
+        "Dentro di te matura qualcosa di vero.",
+        "Chiudi un ciclo con dolcezza: è fertilità, non fine.",
+        "Radica l’intento: il futuro germoglia nel silenzio.",
     ],
     "Raido": [
         "Il viaggio è iniziato: muoviti con intenzione.",
         "Oggi un passo cambia tutto.",
         "Scegli la direzione, poi fidati della strada.",
+        "Il movimento è una preghiera.",
     ],
     "Gebo": [
         "Dare e ricevere sono lo stesso gesto.",
         "L'equilibrio è nel tuo cuore.",
         "La connessione è reciproca.",
-    ],
-    "Wunjo": [
-        "La gioia arriva quando smetti di cercarla.",
-        "Oggi il sorriso è già dentro.",
-        "La gioia non si insegue: si respira.",
-    ],
-
-    "Kenaz": [
-        "Una scintilla illumina ciò che era nascosto.",
-        "Oggi vedi chiaro.",
-        "Accendi la creatività e cambia il quadro.",
-    ],
-    "Sowilo": [
-        "La luce è dalla tua parte. Avanza.",
-        "Non nasconderti: splendi.",
-        "Usa il giorno: è un alleato.",
-    ],
-    "Tiwaz": [
-        "Accendi il coraggio: una scelta ti libera.",
-        "Agisci con rettitudine: la via si apre.",
-        "La decisione è la tua forza.",
+        "Oggi un dono torna in altra forma.",
     ],
     "Hagalaz": [
         "Il cambiamento rompe ciò che non serve più.",
         "Lascia che cada: rinasci.",
         "Nel caos c'è un ordine nascosto.",
+        "Oggi la tempesta pulisce l’aria.",
+    ],
+    "Ansuz": [
+        "Ascolta: la parola giusta arriva dal vento.",
+        "Il messaggio è già qui: leggilo tra le righe.",
+        "Parla solo quando senti presenza.",
+        "Oggi la verità si dice con delicatezza.",
+    ],
+    "Tiwaz": [
+        "Accendi il coraggio: una scelta ti libera.",
+        "Agisci con rettitudine: la via si apre.",
+        "La decisione è la tua forza.",
+        "Scegli ciò che è giusto, non ciò che è facile.",
+    ],
+    "Ehwaz": [
+        "Avanza: il cambiamento si muove con te.",
+        "Oggi fidati della collaborazione: non sei sola.",
+        "Il ritmo giusto ti porta lontano.",
+        "Muoviti in armonia: l’energia ti sostiene.",
+    ],
+    "Dagaz": [
+        "Una nuova visione si apre ora.",
+        "Tra notte e giorno: scegli il risveglio.",
+        "La luce cambia tutto, anche te.",
+        "Oggi l’alba nasce dentro.",
+    ],
+    "Fehu": [
+        "Ciò che possiedi cresce se lo condividi con consapevolezza.",
+        "La vera ricchezza è invisibile: inizia dal cuore.",
+        "Non trattenere: l’abbondanza ama il flusso.",
+        "Oggi semina fiducia: il raccolto è vicino.",
+    ],
+    "Thurisaz": [
+        "Proteggi il confine: scegli cosa far entrare.",
+        "La forza va guidata, non lasciata libera.",
+        "Oggi taglia ciò che ti consuma.",
+        "Il coraggio è dire NO quando serve.",
     ],
     "Nauthiz": [
         "La necessità rivela la via.",
         "Oggi il bisogno ti guida.",
+        "La stretta è una lezione: ascoltala.",
         "Sopravvivi: e poi fiorisci.",
-    ],
-    # ✅ Mannaz (FUOCO)
-    "Mannaz": [
-        "La tua forza cresce quando ti ricordi chi sei.",
-        "Oggi scegli l’umano: presenza, verità, relazione.",
-        "Specchiati negli altri senza perderti.",
-        "Il coraggio più grande è essere autentici.",
-    ],
-
-    "Dagaz": [
-        "Una nuova visione si apre ora.",
-        "Tra notte e giorno: scegli il risveglio.",
-        "La luce cambia tutto.",
-    ],
-    "Algiz": [
-        "Sei protetta mentre resti fedele a te.",
-        "Resta vera: niente ti tocca.",
-        "Cammina con dignità: sei guardata.",
     ],
 }
 
@@ -177,8 +203,8 @@ def _norm_elemento(x: str) -> str:
 
 def genera_oracolo(elemento: str, nonce: str | None = None) -> dict:
     """
-    - nonce None  -> oracolo del giorno (stabile per elemento)
-    - nonce != None -> cambia ad ogni click (seed diverso)
+    - nonce None      -> oracolo del giorno (stabile per elemento)
+    - nonce presente  -> cambia ad ogni click (seed diverso)
     """
     elemento = _norm_elemento(elemento)
     oggi = dt.date.today().isoformat()
@@ -220,7 +246,7 @@ def oracle():
 @app.get("/view")
 def view():
     elemento = request.args.get("elemento", "RANDOM")
-    data = genera_oracolo(elemento, nonce=None)  # oracolo quotidiano al primo caricamento
+    data = genera_oracolo(elemento, nonce=None)  # oracolo quotidiano sul primo caricamento
 
     html = """<!doctype html>
 <html lang="it">
