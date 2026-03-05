@@ -25,7 +25,7 @@ SEGNI = {
     "ACQUA": ["Cancro", "Scorpione", "Pesci"],
     "ARIA": ["Gemelli", "Bilancia", "Acquario"],
     "FUOCO": ["Ariete", "Leone", "Sagittario"],
-    "SPAZIO": ["Oltre i segni", "Tra le stelle", "Nel varco"],
+    "SPAZIO": ["Beyond signs", "Between stars", "In the passage"],
 }
 
 # Alias -> forma canonica
@@ -86,144 +86,145 @@ RUNE_PER_ELEMENTO = {
     "SPAZIO": list(map(canon_rune, ["Berkana", "Algiz", "Gebo", "Ehwaz", "Fehu"])),
 }
 
-RUNE_VARIANTS_IT = {
+# ✅ Frasi bilingue vere (IT sopra, EN sotto)
+RUNE_VARIANTS = {
     "Othila": [
-        "Riconosci ciò che ti appartiene davvero.",
-        "Torna alla radice: lì c'è forza.",
-        "Ciò che è tuo non si perde.",
-        "Proteggi i tuoi confini con amore.",
+        ("Riconosci ciò che ti appartiene davvero.", "Claim what truly belongs to you."),
+        ("Torna alla radice: lì c'è forza.", "Return to your roots: that’s where strength lives."),
+        ("Ciò che è tuo non si perde.", "What is truly yours cannot be lost."),
+        ("Proteggi i tuoi confini con amore.", "Protect your boundaries with love."),
     ],
     "Wunjo": [
-        "La gioia arriva quando smetti di inseguirla.",
-        "Oggi il sorriso è già dentro.",
-        "La gioia non si insegue: si respira.",
-        "Lascia spazio al piacere semplice.",
+        ("La gioia arriva quando smetti di inseguirla.", "Joy arrives when you stop chasing it."),
+        ("Oggi il sorriso è già dentro.", "Today the smile is already inside you."),
+        ("La gioia non si insegue: si respira.", "Joy isn’t hunted: it’s breathed."),
+        ("Lascia spazio al piacere semplice.", "Make room for simple pleasure."),
     ],
     "Isa": [
-        "Fermati. Nel silenzio trovi chiarezza.",
-        "La pausa è potere.",
-        "Rallenta: la verità si deposita da sola.",
-        "Il gelo protegge da scelte impulsive.",
+        ("Fermati. Nel silenzio trovi chiarezza.", "Stop. In silence you find clarity."),
+        ("La pausa è potere.", "Pause is power."),
+        ("Rallenta: la verità si deposita da sola.", "Slow down: truth settles on its own."),
+        ("Il gelo protegge da scelte impulsive.", "The ice protects you from impulsive choices."),
     ],
     "Uruz": [
-        "La forza è già in te: usala senza forzarla.",
-        "Oggi un passo deciso basta a spostare montagne.",
-        "Forza è presenza totale, non sforzo.",
-        "Il tuo istinto è la bussola migliore.",
+        ("La forza è già in te: usala senza forzarla.", "Strength is already within you—use it without forcing."),
+        ("Oggi un passo deciso basta a spostare montagne.", "Today one firm step can move mountains."),
+        ("Forza è presenza totale, non sforzo.", "Strength is full presence, not strain."),
+        ("Il tuo istinto è la bussola migliore.", "Your instinct is your best compass."),
     ],
     "Jera": [
-        "Ogni cosa arriva nel tempo giusto. Abbi fiducia.",
-        "La ruota gira lenta, ma gira.",
-        "Non forzare: la stagione sa.",
-        "Oggi il tempo lavora per te.",
+        ("Ogni cosa arriva nel tempo giusto. Abbi fiducia.", "Everything arrives at the right time. Trust it."),
+        ("La ruota gira lenta, ma gira.", "The wheel turns slowly, but it turns."),
+        ("Non forzare: la stagione sa.", "Don’t force it: the season knows."),
+        ("Oggi il tempo lavora per te.", "Today time is working for you."),
     ],
     "Ingwaz": [
-        "Il seme è pronto: ora può diventare vita.",
-        "Dentro di te matura qualcosa di vero.",
-        "Chiudi un ciclo con dolcezza: è fertilità, non fine.",
-        "Radica l’intento: il futuro germoglia nel silenzio.",
+        ("Il seme è pronto: ora può diventare vita.", "The seed is ready: it can become life."),
+        ("Dentro di te matura qualcosa di vero.", "Something real is ripening within you."),
+        ("Chiudi un ciclo con dolcezza: è fertilità, non fine.", "Close a cycle gently: it’s fertility, not an end."),
+        ("Radica l’intento: il futuro germoglia nel silenzio.", "Root your intention: the future sprouts in silence."),
     ],
     "Raido": [
-        "Il viaggio è iniziato: muoviti con intenzione.",
-        "Oggi un passo cambia tutto.",
-        "Scegli la direzione, poi fidati della strada.",
-        "Il movimento è una preghiera.",
+        ("Il viaggio è iniziato: muoviti con intenzione.", "The journey has begun: move with intention."),
+        ("Oggi un passo cambia tutto.", "Today one step changes everything."),
+        ("Scegli la direzione, poi fidati della strada.", "Choose the direction, then trust the road."),
+        ("Il movimento è una preghiera.", "Movement is a prayer."),
     ],
     "Hagalaz": [
-        "Il cambiamento rompe ciò che non serve più.",
-        "Lascia che cada: rinasci.",
-        "Nel caos c'è un ordine nascosto.",
-        "Oggi la tempesta pulisce l’aria.",
+        ("Il cambiamento rompe ciò che non serve più.", "Change breaks what no longer serves."),
+        ("Lascia che cada: rinasci.", "Let it fall—then be reborn."),
+        ("Nel caos c'è un ordine nascosto.", "Inside chaos there is hidden order."),
+        ("Oggi la tempesta pulisce l’aria.", "Today the storm clears the air."),
     ],
     "Perthro": [
-        "Il mistero non va risolto: va attraversato.",
-        "Accetta l'ignoto: è il tuo alleato.",
-        "Un velo si alza piano: guarda.",
-        "Rimani nel passaggio: la trasformazione è in atto.",
+        ("Il mistero non va risolto: va attraversato.", "The mystery isn’t to be solved: it’s to be crossed."),
+        ("Accetta l'ignoto: è il tuo alleato.", "Accept the unknown: it’s your ally."),
+        ("Un velo si alza piano: guarda.", "A veil lifts slowly—look."),
+        ("Rimani nel passaggio: la trasformazione è in atto.", "Stay in the passage: transformation is underway."),
     ],
     "Laguz": [
-        "Lascia scorrere. La risposta arriva senza sforzo.",
-        "Non combattere la corrente: vai con lei.",
-        "L'intuizione è la tua corrente.",
-        "Non afferrare: l'onda ti porta.",
+        ("Lascia scorrere. La risposta arriva senza sforzo.", "Let it flow. The answer arrives without effort."),
+        ("Non combattere la corrente: vai con lei.", "Don’t fight the current: go with it."),
+        ("L'intuizione è la tua corrente.", "Intuition is your current."),
+        ("Non afferrare: l'onda ti porta.", "Don’t grasp: the wave carries you."),
     ],
     "Tiwaz": [
-        "Accendi il coraggio: una scelta ti libera.",
-        "Agisci con rettitudine: la via si apre.",
-        "Scegli ciò che è giusto, non ciò che è facile.",
-        "La decisione è la tua forza.",
+        ("Accendi il coraggio: una scelta ti libera.", "Ignite courage: one choice sets you free."),
+        ("Agisci con rettitudine: la via si apre.", "Act with integrity: the path opens."),
+        ("Scegli ciò che è giusto, non ciò che è facile.", "Choose what is right, not what is easy."),
+        ("La decisione è la tua forza.", "Decision is your strength."),
     ],
     "Sowilo": [
-        "La luce è dalla tua parte. Avanza.",
-        "Non nasconderti: splendi.",
-        "Usa il giorno: è un alleato.",
-        "Lascia che la tua energia illumini.",
+        ("La luce è dalla tua parte. Avanza.", "The light is on your side. Move forward."),
+        ("Non nasconderti: splendi.", "Don’t hide: shine."),
+        ("Usa il giorno: è un alleato.", "Use the day: it’s an ally."),
+        ("Lascia che la tua energia illumini.", "Let your energy illuminate."),
     ],
     "Ansuz": [
-        "Ascolta: la parola giusta arriva dal vento.",
-        "Il messaggio è già qui: leggilo tra le righe.",
-        "Parla solo quando senti presenza.",
-        "Oggi la verità si dice con delicatezza.",
+        ("Ascolta: la parola giusta arriva dal vento.", "Listen: the right word arrives on the wind."),
+        ("Il messaggio è già qui: leggilo tra le righe.", "The message is already here: read between the lines."),
+        ("Parla solo quando senti presenza.", "Speak only when you feel presence."),
+        ("Oggi la verità si dice con delicatezza.", "Today truth is spoken gently."),
     ],
     "Ehwaz": [
-        "Avanza: il cambiamento si muove con te.",
-        "Oggi fidati della collaborazione: non sei sola.",
-        "Il ritmo giusto ti porta lontano.",
-        "Muoviti in armonia: l’energia ti sostiene.",
+        ("Avanza: il cambiamento si muove con te.", "Move on: change moves with you."),
+        ("Oggi fidati della collaborazione: non sei sola.", "Today trust cooperation: you’re not alone."),
+        ("Il ritmo giusto ti porta lontano.", "The right rhythm takes you far."),
+        ("Muoviti in armonia: l’energia ti sostiene.", "Move in harmony: energy supports you."),
     ],
     "Kenaz": [
-        "Una scintilla illumina ciò che era nascosto.",
-        "Oggi vedi chiaro.",
-        "Accendi la creatività e cambia il quadro.",
-        "Porta luce dove prima c’era dubbio.",
+        ("Una scintilla illumina ciò che era nascosto.", "A spark reveals what was hidden."),
+        ("Oggi vedi chiaro.", "Today you see clearly."),
+        ("Accendi la creatività e cambia il quadro.", "Light creativity and change the scene."),
+        ("Porta luce dove prima c’era dubbio.", "Bring light where doubt lived."),
     ],
     "Dagaz": [
-        "Una nuova visione si apre ora.",
-        "Tra notte e giorno: scegli il risveglio.",
-        "La luce cambia tutto, anche te.",
-        "Oggi l’alba nasce dentro.",
+        ("Una nuova visione si apre ora.", "A new vision opens now."),
+        ("Tra notte e giorno: scegli il risveglio.", "Between night and day: choose awakening."),
+        ("La luce cambia tutto, anche te.", "Light changes everything—including you."),
+        ("Oggi l’alba nasce dentro.", "Today dawn rises within."),
     ],
     "Nauthiz": [
-        "La necessità rivela la via.",
-        "Oggi il bisogno ti guida.",
-        "La stretta è una lezione: ascoltala.",
-        "Sopravvivi: e poi fiorisci.",
+        ("La necessità rivela la via.", "Need reveals the way."),
+        ("Oggi il bisogno ti guida.", "Today necessity guides you."),
+        ("La stretta è una lezione: ascoltala.", "The constraint is a lesson: listen."),
+        ("Sopravvivi: e poi fiorisci.", "Survive—then bloom."),
     ],
     "Mannaz": [
-        "La tua forza cresce quando ti ricordi chi sei.",
-        "Oggi scegli l’umano: presenza, verità, relazione.",
-        "Specchiati negli altri senza perderti.",
-        "Il coraggio più grande è essere autentici.",
+        ("La tua forza cresce quando ti ricordi chi sei.", "Your strength grows when you remember who you are."),
+        ("Oggi scegli l’umano: presenza, verità, relazione.", "Today choose the human: presence, truth, connection."),
+        ("Specchiati negli altri senza perderti.", "See yourself in others without losing yourself."),
+        ("Il coraggio più grande è essere autentici.", "The greatest courage is to be authentic."),
     ],
     "Thurisaz": [
-        "Proteggi il confine: scegli cosa far entrare.",
-        "La forza va guidata, non lasciata libera.",
-        "Oggi taglia ciò che ti consuma.",
-        "Il coraggio è dire NO quando serve.",
+        ("Proteggi il confine: scegli cosa far entrare.", "Protect the boundary: choose what you let in."),
+        ("La forza va guidata, non lasciata libera.", "Force must be guided, not unleashed."),
+        ("Oggi taglia ciò che ti consuma.", "Today cut what drains you."),
+        ("Il coraggio è dire NO quando serve.", "Courage is saying NO when needed."),
     ],
     "Berkana": [
-        "Proteggi ciò che nasce, anche se è fragile.",
-        "La crescita lenta è la più forte.",
-        "Accogli il nuovo senza fretta.",
-        "Lascia che fiorisca nel tuo silenzio.",
+        ("Proteggi ciò che nasce, anche se è fragile.", "Protect what is being born, even if fragile."),
+        ("La crescita lenta è la più forte.", "Slow growth is the strongest."),
+        ("Accogli il nuovo senza fretta.", "Welcome the new without rushing."),
+        ("Lascia che fiorisca nel tuo silenzio.", "Let it bloom in your silence."),
     ],
     "Algiz": [
-        "Sei protetta mentre resti fedele a te.",
-        "Oggi lo scudo è la tua verità.",
-        "Cammina con dignità: la protezione ti segue.",
-        "Non temere: ciò che è tuo è custodito.",
+        ("Sei protetta mentre resti fedele a te.", "You are protected as long as you stay true to yourself."),
+        ("Oggi lo scudo è la tua verità.", "Today your shield is your truth."),
+        ("Cammina con dignità: la protezione ti segue.", "Walk with dignity: protection follows you."),
+        ("Non temere: ciò che è tuo è custodito.", "Do not fear: what is yours is guarded."),
     ],
     "Gebo": [
-        "Dare e ricevere sono lo stesso gesto.",
-        "L'equilibrio è nel tuo cuore.",
-        "La connessione è reciproca.",
-        "Oggi un dono torna in altra forma.",
+        ("Dare e ricevere sono lo stesso gesto.", "Giving and receiving are the same gesture."),
+        ("L'equilibrio è nel tuo cuore.", "Balance lives in your heart."),
+        ("La connessione è reciproca.", "Connection is reciprocal."),
+        ("Oggi un dono torna in altra forma.", "Today a gift returns in another form."),
     ],
     "Fehu": [
-        "Ciò che possiedi cresce se lo condividi con consapevolezza.",
-        "La vera ricchezza è invisibile: inizia dal cuore.",
-        "Non trattenere: l’abbondanza ama il flusso.",
-        "Oggi semina fiducia: il raccolto è vicino.",
+        ("Ciò che possiedi cresce se lo condividi con consapevolezza.", "What you own grows when you share it consciously."),
+        ("La vera ricchezza è invisibile: inizia dal cuore.", "True wealth is invisible: it begins in the heart."),
+        ("Non trattenere: l’abbondanza ama il flusso.", "Don’t cling: abundance loves flow."),
+        ("Oggi semina fiducia: il raccolto è vicino.", "Today plant trust: the harvest is near."),
     ],
 }
 
@@ -233,12 +234,11 @@ def _norm_elemento(x: str) -> str:
         return x
     return random.choice(ELEMENTI)
 
-def _simple_en(it_text: str) -> str:
-    t = it_text.strip()
-    t = t.replace("Oggi", "Today").replace("oggi", "today")
-    return t
-
 def genera_oracolo(elemento: str, nonce: str | None = None) -> dict:
+    """
+    - nonce None      -> oracolo del giorno (stabile per elemento)
+    - nonce presente  -> cambia ad ogni click (seed diverso)
+    """
     elemento = _norm_elemento(elemento)
     oggi = dt.date.today().isoformat()
 
@@ -250,9 +250,11 @@ def genera_oracolo(elemento: str, nonce: str | None = None) -> dict:
     runa = rng.choice(rune_list)
     simbolo = RUNE_SYMBOL.get(runa, "ᚱ")
 
-    varianti = RUNE_VARIANTS_IT.get(runa) or ["Oggi ascolta. La runa parla in silenzio."]
-    msg_it = rng.choice(varianti)
-    msg_en = _simple_en(msg_it)
+    pairs = RUNE_VARIANTS.get(runa)
+    if not pairs:
+        msg_it, msg_en = ("Oggi ascolta. La runa parla in silenzio.", "Today listen. The rune speaks in silence.")
+    else:
+        msg_it, msg_en = rng.choice(pairs)
 
     return {
         "elemento": elemento,
@@ -436,7 +438,6 @@ def view():
   }
 
   function spawnSparks(){
-    // 6 particelle con direzioni random
     for(let i=0;i<6;i++){
       const s = document.createElement("div");
       s.className = "spark";
@@ -451,10 +452,9 @@ def view():
   }
 
   function ripple(){
-    // riavvia animazione cerchi energetici
     rings.forEach((ring, idx)=>{
       ring.style.animation = "none";
-      ring.offsetHeight; // force reflow
+      ring.offsetHeight;
       ring.style.opacity = "1";
       ring.style.animation = "ripple " + (0.8 + idx*0.15) + "s ease-out forwards";
     });
@@ -486,10 +486,11 @@ def view():
       rSym.textContent  = d.runa_symbol;
 
       msgIt.textContent = d.messaggio_it; // IT sopra
-      msgEn.textContent = d.messaggio_en; // EN sotto
+      msgEn.textContent = d.messaggio_en; // EN sotto (ORA VERO)
+
       seed.textContent  = d.seed;
 
-      speakItalian(d.messaggio_it); // ✅ audio solo IT
+      speakItalian(d.messaggio_it); // audio solo IT
     }catch(err){
       console.error(err);
       msgIt.textContent = "Errore nel contattare l'oracolo. Riprova.";
