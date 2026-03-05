@@ -26,22 +26,15 @@ COLORI = {
 }
 
 SEGNI = {
-    "TERRA": ["Toro", "Vergine", "Capricorno"],
-    "ACQUA": ["Cancro", "Scorpione", "Pesci"],
-    "ARIA": ["Gemelli", "Bilancia", "Acquario"],
-    "FUOCO": ["Ariete", "Leone", "Sagittario"],
-    "SPAZIO": ["Acquario", "Pesci", "Sagittario"],
+    "TERRA": ["Toro", "Vergine", "Capricorno" "Cancro", "Scorpione", "Pesci" "Ariete", "Leone", "Sagittario" "Acquario", "Pesci", "Sagittario"],
 }
 
 # =========================
 # RUNE + SIMBOLI
 # =========================
 RUNE_PER_ELEMENTO = {
-    "TERRA": ["Fehu", "Uruz", "Berkano", "Jera"],
-    "ACQUA": ["Laguz", "Perthro", "Eihwaz", "Isa"],
-    "ARIA": ["Ansuz", "Raido", "Gebo", "Wunjo"],
-    "FUOCO": ["Kenaz", "Sowilo", "Tiwaz", "Hagalaz"],
-    "SPAZIO": ["Algiz", "Dagaz", "Nauthiz", "Othila"],
+    "TERRA": ,
+    "ACQUA": ["Laguz", "Perthro", "Eihwaz", "Isa" "Ansuz", "Raido", "Gebo", "Wunjo" "Kenaz", "Sowilo", "Tiwaz", "Hagalaz" "Algiz", "Dagaz", "Nauthiz", "Othila"],
 }
 
 RUNE_SYMBOL = {
@@ -52,89 +45,186 @@ RUNE_SYMBOL = {
 }
 
 # =========================
-# MESSAGGI UNICI PER RUNA
+# MESSAGGI VARIABILI PER OGNI RUNA (cambiano ogni giorno!)
 # =========================
-RUNA_MESSAGES = {
-    "Fehu": (
+RUNE_VARIANTS_IT = {
+    "Fehu": [
         "Ciò che possiedi cresce se lo condividi con consapevolezza.",
-        "What you hold grows when shared with awareness."
-    ),
-    "Uruz": (
-        "La forza è già in te: usala senza forzarla.",
-        "Strength is already within you: use it without strain."
-    ),
-    "Berkano": (
-        "Proteggi ciò che nasce, anche se è fragile.",
-        "Protect what is being born, even if it is fragile."
-    ),
-    "Jera": (
-        "Ogni cosa arriva nel tempo giusto. Abbi fiducia.",
-        "Everything arrives in its right time. Trust the cycle."
-    ),
-    "Laguz": (
+        "La vera ricchezza è invisibile: inizia dal cuore.",
+        "Un gesto generoso oggi, un raccolto domani.",
+        "Non trattenere: l'abbondanza ama il flusso.",
+        "La moneta che dai torna triplicata, fidati.",
+        "Oggi la tua energia attira ciò che meriti.",
+        "Smetti di contare: l'universo già sa.",
+        "Un sorriso condiviso vale più di mille lingotti.",
+        "La porta della prosperità si apre con gratitudine.",
+        "Oggi semina fiducia: il raccolto è vicino." "La forza è già in te: usala senza forzarla.",
+        "Respira. Il tuo corpo sa più di quanto pensi.",
+        "Oggi un passo deciso basta a spostare montagne.",
+        "Non spingere: lascia che la vitalità scorra.",
+        "La tua radice è solida, ora spingi in alto.",
+        "Un urlo silenzioso dentro: è il tuo potere.",
+        "Oggi la bestia interiore si sveglia gentile.",
+        "Forza non è muscoli: è presenza totale.",
+        "Lascia andare la stanchezza, lei se ne va da sola.",
+        "Il tuo istinto è la bussola migliore." "Proteggi ciò che nasce, anche se è fragile.",
+        "Un germoglio ha bisogno di te: coprilo.",
+        "Oggi custodisci il tuo sogno, non farlo vedere.",
+        "La crescita lenta è la più forte.",
+        "Accogli il nuovo senza fretta.",
+        "Un abbraccio al tuo futuro basta.",
+        "Protezione non è mura: è attenzione.",
+        "Lascia che fiorisca nel tuo silenzio.",
+        "Oggi il fragile diventa forte grazie a te.",
+        "Il seme che curi oggi ti salverà domani." "Ogni cosa arriva nel tempo giusto. Abbi fiducia.",
+        "Il ciclo gira: aspetta il tuo turno.",
+        "Oggi raccogli ciò che hai seminato ieri.",
+        "Pazienza non è attesa: è preparazione.",
+        "La ruota gira lenta, ma gira.",
+        "Fidati: il raccolto è già in arrivo.",
+        "Oggi il tempo lavora per te.",
+        "Un anno di silenzio, un giorno di luce.",
+        "Non forzare: la stagione sa.",
+        "Il tuo momento è vicino, respira."
+    ],
+    "Laguz": [
         "Lascia scorrere. La risposta arriva senza sforzo.",
-        "Let it flow. The answer arrives without force."
-    ),
-    "Perthro": (
-        "Il mistero non va risolto: va attraversato.",
-        "The mystery is not to be solved, but crossed."
-    ),
-    "Eihwaz": (
-        "Rimani nel passaggio: la trasformazione è in atto.",
-        "Stay in the passage: transformation is underway."
-    ),
-    "Isa": (
-        "Fermati. Nel silenzio trovi chiarezza.",
-        "Pause. In stillness, clarity emerges."
-    ),
-    "Ansuz": (
-        "Ascolta il messaggio: sta già parlando.",
-        "Listen to the message: it is already speaking."
-    ),
-    "Raido": (
-        "Il viaggio è iniziato: muoviti con intenzione.",
-        "The journey has begun: move with intention."
-    ),
-    "Gebo": (
+        "Oggi l'acqua lava via il peso.",
+        "Non combattere la corrente: vai con lei.",
+        "Il tuo cuore sa già dove andare.",
+        "Fluisci come un fiume: arriva al mare.",
+        "Le emozioni si muovono: seguile.",
+        "Oggi ascolta il suono del tuo respiro.",
+        "Lascia che tutto si sistemi da solo.",
+        "L'intuizione è la tua corrente.",
+        "Non afferrare: l'onda ti porta."         "Il mistero non va risolto: va attraversato.",
+        "Oggi il destino gioca a carte coperte.",
+        "Accetta l'ignoto: è il tuo alleato.",
+        "La runa nasconde, ma non mente.",
+        "Un velo si alza piano, guarda.",
+        "Il segreto è dentro di te.",
+        "Oggi cammina nel buio con fiducia.",
+        "Non chiedere: vivi la sorpresa.",
+        "Il caso è solo un messaggio.",
+        "Lascia che il mistero ti guidi." "Rimani nel passaggio: la trasformazione è in atto.",
+        "Oggi sei tra due mondi: resta fermo.",
+        "Il ponte è fragile, ma regge.",
+        "Cambiamento non è fine: è mezzo.",
+        "Respira nel vuoto: lì nasce il nuovo.",
+        "La tua forma vecchia si scioglie.",
+        "Oggi il tronco si piega, non spezza.",
+        "Il passaggio è sacro: onorarlo.",
+        "Trasformati senza paura.",
+        "La fine è solo un altro inizio." "Fermati. Nel silenzio trovi chiarezza.",
+        "Oggi il gelo ti protegge.",
+        "Non muoverti: ascolta il vuoto.",
+        "La pausa è potere.",
+        "Il ghiaccio riflette la verità.",
+        "Respira. Tutto è sospeso.",
+        "Oggi il mondo aspetta te.",
+        "Silenzio non è assenza: è spazio.",
+        "Lascia che il freddo ti pulisca.",
+        "La chiarezza arriva quando smetti." "Ascolta il messaggio: sta già parlando.",
+        "Oggi la parola arriva dal vento.",
+        "La tua bocca sa cosa dire.",
+        "Un respiro e la verità esce.",
+        "Il divino sussurra: tendi l'orecchio.",
+        "Oggi ascolta più che parlare.",
+        "La voce interiore è alta.",
+        "Il segno è nella tua lingua.",
+        "Non inventare: ricevi.",
+        "La saggezza è già qui." "Il viaggio è iniziato: muoviti con intenzione.",
+        "Oggi un passo cambia tutto.",
+        "La strada è tua: scegli.",
+        "Non correre: cammina consapevole.",
+        "Il movimento è preghiera.",
+        "Oggi il sentiero ti chiama.",
+        "Porta con te solo ciò che serve.",
+        "Ogni metro è una lezione.",
+        "La destinazione è dentro.",
+        "Vai: il mondo ti aspetta."
+    ],
+    # Aggiungi le altre rune con lo stesso stile (10 frasi ciascuna)
+    # Per brevità, metto solo 3-4 per le restanti – tu espandi!
+    "Gebo": [
         "Dare e ricevere sono lo stesso gesto.",
-        "Giving and receiving are the same movement."
-    ),
-    "Wunjo": (
-        "La gioia arriva quando smetti di cercarla.",
-        "Joy arrives when you stop chasing it."
-    ),
-    "Kenaz": (
-        "Una scintilla illumina ciò che era nascosto.",
-        "A spark reveals what was hidden."
-    ),
-    "Sowilo": (
+        "Oggi un regalo torna indietro.",
+        "L'equilibrio è nel tuo cuore.",
+        "Non contare: scambia.",
+        "La connessione è reciproca.",
+        "Un sì oggi, un sì domani.",
+        "Il dono è la tua forza.",
+        "Lascia che il cerchio si chiuda." "La gioia arriva quando smetti di cercarla.",
+        "Oggi il sorriso è già dentro.",
+        "Sii felice senza motivo.",
+        "La luce è tua, accoglila.",
+        "La gioia non si insegue: si respira.",
+        "Un momento basta.",
+        "Oggi tutto è perfetto così.",
+        "Ridi: l'universo ride con te." "Una scintilla illumina ciò che era nascosto.",
+        "Oggi vedi chiaro.",
+        "Il fuoco interiore si accende.",
+        "La torcia è nella tua mano.",
+        "Non temere l'ombra: accendila.",
+        "La conoscenza brucia leggera.",
+        "Oggi un'idea cambia tutto.",
+        "Illumina senza bruciare."
+    ],
+    "Sowilo": [
         "La luce è dalla tua parte. Avanza.",
-        "The light is on your side. Move forward."
-    ),
-    "Tiwaz": (
+        "Oggi il sole ti segue.",
+        "Non nasconderti: splendi.",
+        "La vittoria è già tua.",
+        "Il giorno è lungo: usalo.",
+        "La tua ombra si ritira.",
+        "Avanti, la luce guida.",
+        "Oggi tutto è possibile."
+    ],
+    "Tiwaz": [
         "Accendi il coraggio: una scelta ti libera.",
-        "Ignite courage: one choice sets you free."
-    ),
-    "Hagalaz": (
-        "Il cambiamento rompe ciò che non serve più.",
-        "Change breaks what no longer serves."
-    ),
-    "Algiz": (
-        "Sei protetta mentre resti fedele a te.",
-        "You are protected while staying true to yourself."
-    ),
-    "Dagaz": (
-        "Una nuova visione si apre ora.",
-        "A new vision opens now."
-    ),
-    "Nauthiz": (
-        "La necessità rivela la via.",
-        "Necessity reveals the path."
-    ),
-    "Othila": (
-        "Riconosci ciò che ti appartiene davvero.",
-        "Recognize what truly belongs to you."
-    ),
+        "Oggi decidi e vola.",
+        "La spada è la tua volontà.",
+        "Non dubitare: agisci.",
+        "Il giusto è già dentro.",
+        "Una scelta, una vita nuova.",
+        "Il coraggio non aspetta.",
+        "Sii la tua legge." "Il cambiamento rompe ciò che non serve più.",
+        "Oggi il vecchio crolla.",
+        "La grandine pulisce.",
+        "Lascia che cada: rinasci.",
+        "Il caos è ordine nascosto.",
+        "Non resistere: trasforma.",
+        "La rottura è liberazione.",
+        "Oggi il mondo si resetta." "Sei protetta mentre resti fedele a te.",
+        "Oggi il tuo scudo è vivo.",
+        "Non temere: sei guardata.",
+        "La protezione è dentro.",
+        "Resta vera: niente ti tocca.",
+        "Il corno ti copre.",
+        "Fidati del tuo confine.",
+        "Sei al sicuro ora." "Una nuova visione si apre ora.",
+        "Oggi l'alba è dentro.",
+        "Il buio finisce.",
+        "Vedi oltre.",
+        "La luce cambia tutto.",
+        "Un clic: nuovo giorno.",
+        "La prospettiva si ribalta.",
+        "Oggi rinasci." "La necessità rivela la via.",
+        "Oggi il bisogno ti guida.",
+        "Non c'è scelta: c'è destino.",
+        "Il fuoco della fame illumina.",
+        "Sopravvivi: cresci.",
+        "La mancanza è maestra.",
+        "Oggi ciò che manca ti salva.",
+        "La via è stretta, ma vera." "Riconosci ciò che ti appartiene davvero.",
+        "Oggi la casa è dentro.",
+        "Il tuo sangue parla.",
+        "Torna alla radice.",
+        "Ciò che è tuo non si perde.",
+        "La famiglia è eredità viva.",
+        "Accogli il tuo posto.",
+        "Oggi sei a casa."
+    ]
 }
 
 # =========================
@@ -143,18 +233,25 @@ RUNA_MESSAGES = {
 def genera_oracolo(elemento):
     elemento = elemento if elemento in ELEMENTI else random.choice(ELEMENTI)
 
-    # seed sempre diverso
-    seed = f"{dt.datetime.utcnow().isoformat()}:{random.random()}"
+    # Seed legato alla DATA: cambia ogni giorno!
+    oggi = dt.date.today().isoformat()
+    seed = f"runa-{elemento}-{oggi}"
     rng = random.Random(seed)
 
-    runa = rng.choice(RUNE_PER_ELEMENTO[elemento])
+    runa = rng.choice(RUNE_PER_ELEMENTO )
     simbolo = RUNE_SYMBOL.get(runa, "ᚱ")
-    msg_it, msg_en = RUNA_MESSAGES[runa]
+
+    # Scegli una variante diversa ogni giorno
+    varianti = RUNE_VARIANTS_IT.get(runa, )
+    msg_it = rng.choice(varianti)
+
+    # Per inglese: placeholder semplice (puoi fare liste separate dopo)
+    msg_en = f"Today: {msg_it.lower().replace('oggi', 'today').replace('la', 'the')}"
 
     return {
         "elemento": elemento,
-        "colore": COLORI[elemento],
-        "segni": SEGNI[elemento],
+        "colore": COLORI ,
+        "segni": SEGNI ,
         "runa": runa,
         "runa_symbol": simbolo,
         "messaggio_it": msg_it,
@@ -172,7 +269,7 @@ def oracle():
     return jsonify(genera_oracolo(elemento))
 
 # =========================
-# UI
+# UI (lasciata uguale)
 # =========================
 @app.get("/")
 @app.get("/view")
@@ -198,21 +295,21 @@ font-family:system-ui,Segoe UI,Arial;">
 
 <h1 style="text-align:center;">✨ {SUBTITLE}</h1>
 
-<h2>Elemento: {e(data["elemento"])}</h2>
+<h2>Elemento: {e(data )}</h2>
 
 <div style="display:flex;align-items:center;gap:14px;">
-  <div id="runa-symbol" style="font-size:42px;">{e(data["runa_symbol"])}</div>
+  <div id="runa-symbol" style="font-size:42px;">{e(data )}</div>
   <div id="runa-name" style="font-size:36px;font-weight:bold;">
-    {e(data["runa"])}
+    {e(data )}
   </div>
 </div>
 
 <div id="msg-it" style="margin-top:16px;font-size:20px;">
-  {e(data["messaggio_it"])}
+  {e(data )}
 </div>
 
 <div id="msg-en" style="opacity:.7;margin-top:6px;">
-  {e(data["messaggio_en"])}
+  {e(data )}
 </div>
 
 <a href="#" id="cta"
@@ -245,7 +342,7 @@ font-weight:900;text-decoration:none;">
   btn.onclick = async function(e){{
     e.preventDefault();
     btn.textContent = "… in ascolto";
-    const res = await fetch("/oracle?elemento={e(data["elemento"])}&nonce="+Date.now());
+    const res = await fetch("/oracle?elemento={e(data )}&nonce="+Date.now());
     const d = await res.json();
 
     rName.textContent = d.runa;
