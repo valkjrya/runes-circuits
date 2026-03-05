@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 TITLE = "RUNES & CIRCUITS"
 SUBTITLE = "Rune Parlanti"
-CTA_TEXT = "RICEVI LA DIVINAZIONE"
+CTA_TEXT = "DIVINAZIONE"
 
 ELEMENTI = ["TERRA", "ACQUA", "ARIA", "FUOCO", "SPAZIO"]
 
@@ -28,7 +28,7 @@ SEGNI = {
     "SPAZIO": ["Oltre i segni", "Tra le stelle", "Nel varco"],
 }
 
-# Mappa sinonimi -> forma canonica (per gestire Othala/Othala, Raidho/Raidho, ecc.)
+# Alias -> forma canonica
 RUNE_ALIAS = {
     "OTHALA": "Othila",
     "OTHILA": "Othila",
@@ -37,15 +37,8 @@ RUNE_ALIAS = {
     "TEIWAZ": "Tiwaz",
     "TIWAZ": "Tiwaz",
     "RAIDHO": "Raido",
-    "RAIDHO": "Raido",
-    "RAIDHO ": "Raido",
-    "RAIDHÓ": "Raido",
-    "RAIDHO’": "Raido",
-    "RAIDHO’ ": "Raido",
     "RAIDHO'": "Raido",
     "RAIDHO’": "Raido",
-    "RAIDHO": "Raido",
-    "RAIDHO": "Raido",
     "PERTHU": "Perthro",
     "PERTHRO": "Perthro",
     "KAUNAZ": "Kenaz",
@@ -58,7 +51,6 @@ def canon_rune(name: str) -> str:
     key = name.strip().upper()
     return RUNE_ALIAS.get(key, name.strip().title())
 
-# Simboli runici (inclusi Ingwaz, Mannaz, Thurisaz, Ehwaz)
 RUNE_SYMBOL = {
     "Fehu": "ᚠ",
     "Uruz": "ᚢ",
@@ -85,7 +77,7 @@ RUNE_SYMBOL = {
     "Berkana": "ᛒ",
 }
 
-# ✅ ORDINE ESATTO richiesto (con canonizzazione dei nomi)
+# ✅ tuo ordine richiesto
 RUNE_PER_ELEMENTO = {
     "TERRA": list(map(canon_rune, ["Othala", "Wunjo", "Isa", "Uruz", "Jera"])),
     "ACQUA": list(map(canon_rune, ["Ingwaz", "Raidho", "Hagalaz", "Perthu", "Laguz"])),
@@ -94,7 +86,6 @@ RUNE_PER_ELEMENTO = {
     "SPAZIO": list(map(canon_rune, ["Berkana", "Algiz", "Gebo", "Ehwaz", "Fehu"])),
 }
 
-# Frasi per tutte le rune usate sopra
 RUNE_VARIANTS_IT = {
     "Othila": [
         "Riconosci ciò che ti appartiene davvero.",
@@ -242,11 +233,12 @@ def _norm_elemento(x: str) -> str:
         return x
     return random.choice(ELEMENTI)
 
+def _simple_en(it_text: str) -> str:
+    t = it_text.strip()
+    t = t.replace("Oggi", "Today").replace("oggi", "today")
+    return t
+
 def genera_oracolo(elemento: str, nonce: str | None = None) -> dict:
-    """
-    - nonce None      -> oracolo del giorno (stabile per elemento)
-    - nonce presente  -> cambia ad ogni click (seed diverso)
-    """
     elemento = _norm_elemento(elemento)
     oggi = dt.date.today().isoformat()
 
@@ -254,16 +246,13 @@ def genera_oracolo(elemento: str, nonce: str | None = None) -> dict:
     seed = base_seed if not nonce else f"{base_seed}-{nonce}"
     rng = random.Random(seed)
 
-    rune_list = RUNE_PER_ELEMENTO.get(elemento) or []
-    if not rune_list:
-        rune_list = list(RUNE_SYMBOL.keys())
-
+    rune_list = RUNE_PER_ELEMENTO.get(elemento) or list(RUNE_SYMBOL.keys())
     runa = rng.choice(rune_list)
     simbolo = RUNE_SYMBOL.get(runa, "ᚱ")
 
     varianti = RUNE_VARIANTS_IT.get(runa) or ["Oggi ascolta. La runa parla in silenzio."]
     msg_it = rng.choice(varianti)
-    msg_en = "Today: " + msg_it.replace("Oggi", "Today").replace("oggi", "today")
+    msg_en = _simple_en(msg_it)
 
     return {
         "elemento": elemento,
@@ -287,7 +276,7 @@ def oracle():
 @app.get("/view")
 def view():
     elemento = request.args.get("elemento", "RANDOM")
-    data = genera_oracolo(elemento, nonce=None)  # oracolo quotidiano al primo caricamento
+    data = genera_oracolo(elemento, nonce=None)
 
     html = """<!doctype html>
 <html lang="it">
@@ -295,34 +284,129 @@ def view():
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>__TITLE__ — __SUBTITLE__</title>
-</head>
-<body style="margin:0;background:#020308;color:#f6f3ff;font-family:system-ui,Segoe UI,Arial;">
-  <div style="max-width:900px;margin:40px auto;padding:24px;">
-    <h1 style="text-align:center;">✨ __SUBTITLE__</h1>
-    <div style="opacity:.85;text-align:center;margin-top:-10px;">__TITLE__</div>
+<style>
+  :root{
+    --bg:#020308;
+    --fg:#f6f3ff;
+    --muted:rgba(246,243,255,.70);
+    --border:rgba(255,255,255,.12);
+    --cta:#ffd27a;
+    --ctaText:#1a1206;
+  }
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,Segoe UI,Arial;}
+  .wrap{max-width:900px;margin:40px auto;padding:24px;}
+  .card{margin-top:18px;padding:18px;border:1px solid var(--border);border-radius:18px;position:relative;overflow:hidden;}
+  .top{display:flex;align-items:center;justify-content:center;gap:12px;}
+  h1{margin:0;}
+  .sub{opacity:.85;text-align:center;margin-top:6px;}
 
-    <div style="margin-top:26px;padding:18px;border:1px solid rgba(255,255,255,.12);border-radius:16px;">
-      <div style="display:flex;align-items:center;justify-content:center;gap:14px;">
-        <div id="runa-symbol" style="font-size:52px;line-height:1;">__RUNA_SYMBOL__</div>
+  .meta{opacity:.75;font-size:14px;text-align:center;margin-top:10px;}
+  .rline{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:16px;position:relative;}
+  #runa-symbol{
+    font-size:66px;line-height:1;
+    text-shadow: 0 0 0 rgba(255,255,255,0);
+    transition: text-shadow .22s ease, transform .22s ease, filter .22s ease;
+    filter: brightness(1.0);
+    position:relative;
+  }
+
+  /* Cerchi energetici (portale) */
+  .ring{
+    position:absolute;
+    left:50%; top:50%;
+    width:10px; height:10px;
+    transform: translate(-50%,-50%);
+    border-radius:999px;
+    border:1px solid rgba(255,210,122,.35);
+    box-shadow:
+      0 0 10px rgba(255,210,122,.22),
+      0 0 22px rgba(255,255,255,.14);
+    opacity:0;
+    pointer-events:none;
+  }
+  .ring.r1{border-color: rgba(255,210,122,.45);}
+  .ring.r2{border-color: rgba(255,255,255,.25);}
+  .ring.r3{border-color: rgba(255,210,122,.25);}
+
+  @keyframes ripple {
+    0%   {opacity:0; transform:translate(-50%,-50%) scale(0.25);}
+    15%  {opacity:1;}
+    100% {opacity:0; transform:translate(-50%,-50%) scale(10);}
+  }
+
+  /* Particelle leggere */
+  .spark{
+    position:absolute;
+    left:50%; top:50%;
+    width:4px; height:4px;
+    border-radius:999px;
+    background: rgba(255,210,122,.9);
+    box-shadow: 0 0 10px rgba(255,210,122,.55), 0 0 18px rgba(255,255,255,.22);
+    opacity:0;
+    transform: translate(-50%,-50%);
+    pointer-events:none;
+  }
+  @keyframes spark {
+    0%   {opacity:0; transform:translate(-50%,-50%) scale(0.6);}
+    10%  {opacity:1;}
+    100% {opacity:0; transform:translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.2);}
+  }
+
+  /* Glow teatrale sulla runa */
+  .glow #runa-symbol{
+    filter: brightness(1.25);
+    transform: scale(1.03);
+    text-shadow:
+      0 0 16px rgba(255,255,255,.55),
+      0 0 34px rgba(255,210,122,.38),
+      0 0 70px rgba(255,210,122,.20);
+  }
+
+  .msg{margin-top:16px;text-align:center;}
+  #msg-it{font-size:20px;}
+  #msg-en{opacity:.72;margin-top:8px;}
+
+  .ctaRow{display:flex;justify-content:center;margin-top:18px;}
+  #cta{
+    display:inline-block;padding:16px 28px;border-radius:999px;
+    background:var(--cta);color:var(--ctaText);
+    font-weight:900;text-decoration:none;
+  }
+  .seed{opacity:.55;font-size:12px;margin-top:14px;text-align:center;}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <h1>✨ __SUBTITLE__</h1>
+    </div>
+    <div class="sub">__TITLE__</div>
+
+    <div class="card">
+      <div class="meta">
+        Elemento: <b id="el">__ELEMENTO__</b> — Colore: <span id="col">__COLORE__</span>
+      </div>
+
+      <div class="rline" id="rline">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="ring r3"></div>
+        <div id="runa-symbol">__RUNA_SYMBOL__</div>
         <div>
-          <div style="opacity:.75;font-size:14px;">
-            Elemento: <b id="el">__ELEMENTO__</b> — Colore: <span id="col">__COLORE__</span>
-          </div>
-          <div id="runa-name" style="font-size:34px;font-weight:900;margin-top:4px;">__RUNA__</div>
+          <div id="runa-name" style="font-size:34px;font-weight:900;">__RUNA__</div>
         </div>
       </div>
 
-      <div id="msg-it" style="margin-top:18px;font-size:20px;text-align:center;">__MSG_IT__</div>
-      <div id="msg-en" style="opacity:.7;margin-top:8px;text-align:center;">__MSG_EN__</div>
-
-      <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px;">
-        <a href="#" id="cta"
-           style="display:inline-block;padding:16px 28px;border-radius:999px;background:#ffd27a;color:#1a1206;font-weight:900;text-decoration:none;">
-          __CTA__
-        </a>
+      <div class="msg">
+        <div id="msg-it">__MSG_IT__</div>
+        <div id="msg-en">__MSG_EN__</div>
       </div>
 
-      <div style="opacity:.55;font-size:12px;margin-top:14px;text-align:center;">
+      <div class="ctaRow">
+        <a href="#" id="cta">__CTA__</a>
+      </div>
+
+      <div class="seed">
         Seed: <span id="seed">__SEED__</span>
       </div>
     </div>
@@ -338,8 +422,11 @@ def view():
   const msgIt = document.getElementById("msg-it");
   const msgEn = document.getElementById("msg-en");
   const seed  = document.getElementById("seed");
+  const rline = document.getElementById("rline");
+  const card  = document.querySelector(".card");
+  const rings = Array.from(document.querySelectorAll(".ring"));
 
-  function speak(text){
+  function speakItalian(text){
     if(!("speechSynthesis" in window)) return;
     const u = new SpeechSynthesisUtterance(text);
     u.lang = "it-IT";
@@ -348,26 +435,68 @@ def view():
     speechSynthesis.speak(u);
   }
 
+  function spawnSparks(){
+    // 6 particelle con direzioni random
+    for(let i=0;i<6;i++){
+      const s = document.createElement("div");
+      s.className = "spark";
+      const dx = (Math.random()*160 - 80).toFixed(0) + "px";
+      const dy = (Math.random()*140 - 70).toFixed(0) + "px";
+      s.style.setProperty("--dx", dx);
+      s.style.setProperty("--dy", dy);
+      s.style.animation = "spark .65s ease-out forwards";
+      rline.appendChild(s);
+      setTimeout(()=>s.remove(), 800);
+    }
+  }
+
+  function ripple(){
+    // riavvia animazione cerchi energetici
+    rings.forEach((ring, idx)=>{
+      ring.style.animation = "none";
+      ring.offsetHeight; // force reflow
+      ring.style.opacity = "1";
+      ring.style.animation = "ripple " + (0.8 + idx*0.15) + "s ease-out forwards";
+    });
+  }
+
+  function glowOn(){
+    card.classList.add("glow");
+    ripple();
+    spawnSparks();
+  }
+
+  function glowOff(){
+    setTimeout(()=>card.classList.remove("glow"), 320);
+  }
+
   btn.onclick = async function(ev){
     ev.preventDefault();
     btn.textContent = "… in ascolto";
+    glowOn();
+
     try{
       const elemento = el.textContent || "RANDOM";
       const res = await fetch("/oracle?elemento=" + encodeURIComponent(elemento) + "&nonce=" + Date.now());
       const d = await res.json();
+
       el.textContent    = d.elemento;
       col.textContent   = d.colore || "";
       rName.textContent = d.runa;
       rSym.textContent  = d.runa_symbol;
-      msgIt.textContent = d.messaggio_it;
-      msgEn.textContent = d.messaggio_en;
+
+      msgIt.textContent = d.messaggio_it; // IT sopra
+      msgEn.textContent = d.messaggio_en; // EN sotto
       seed.textContent  = d.seed;
-      speak(d.messaggio_it);
+
+      speakItalian(d.messaggio_it); // ✅ audio solo IT
     }catch(err){
       console.error(err);
       msgIt.textContent = "Errore nel contattare l'oracolo. Riprova.";
+      msgEn.textContent = "Error contacting the oracle. Please try again.";
     }finally{
       btn.textContent = "__CTA__";
+      glowOff();
     }
   };
 })();
