@@ -28,7 +28,37 @@ SEGNI = {
     "SPAZIO": ["Oltre i segni", "Tra le stelle", "Nel varco"],
 }
 
-# ✅ simboli (inclusi Thurisaz, Ingwaz, Ehwaz)
+# Mappa sinonimi -> forma canonica (per gestire Othala/Othala, Raidho/Raidho, ecc.)
+RUNE_ALIAS = {
+    "OTHALA": "Othila",
+    "OTHILA": "Othila",
+    "SOWULO": "Sowilo",
+    "SOWILO": "Sowilo",
+    "TEIWAZ": "Tiwaz",
+    "TIWAZ": "Tiwaz",
+    "RAIDHO": "Raido",
+    "RAIDHO": "Raido",
+    "RAIDHO ": "Raido",
+    "RAIDHÓ": "Raido",
+    "RAIDHO’": "Raido",
+    "RAIDHO’ ": "Raido",
+    "RAIDHO'": "Raido",
+    "RAIDHO’": "Raido",
+    "RAIDHO": "Raido",
+    "RAIDHO": "Raido",
+    "PERTHU": "Perthro",
+    "PERTHRO": "Perthro",
+    "KAUNAZ": "Kenaz",
+    "KENAZ": "Kenaz",
+}
+
+def canon_rune(name: str) -> str:
+    if not name:
+        return name
+    key = name.strip().upper()
+    return RUNE_ALIAS.get(key, name.strip().title())
+
+# Simboli runici (inclusi Ingwaz, Mannaz, Thurisaz, Ehwaz)
 RUNE_SYMBOL = {
     "Fehu": "ᚠ",
     "Uruz": "ᚢ",
@@ -42,90 +72,59 @@ RUNE_SYMBOL = {
     "Nauthiz": "ᚾ",
     "Isa": "ᛁ",
     "Jera": "ᛃ",
-    "Eihwaz": "ᛇ",
-    "Perthro": "ᛈ",
-    "Algiz": "ᛉ",
-    "Sowilo": "ᛋ",
-    "Tiwaz": "ᛏ",
-    "Berkana": "ᛒ",
     "Ehwaz": "ᛖ",
     "Mannaz": "ᛗ",
     "Laguz": "ᛚ",
     "Ingwaz": "ᛜ",
     "Dagaz": "ᛞ",
     "Othila": "ᛟ",
+    "Perthro": "ᛈ",
+    "Algiz": "ᛉ",
+    "Sowilo": "ᛋ",
+    "Tiwaz": "ᛏ",
+    "Berkana": "ᛒ",
 }
 
-# ✅ ORDINE ESATTO che hai richiesto
+# ✅ ORDINE ESATTO richiesto (con canonizzazione dei nomi)
 RUNE_PER_ELEMENTO = {
-    "TERRA": ["Algiz", "Eihwaz", "Uruz", "Wunjo", "Berkana", "Othila", "Isa", "Jera"],
-    "ACQUA": ["Perthro", "Laguz", "Ingwaz", "Raido", "Gebo", "Hagalaz"],
-    "ARIA": ["Algiz", "Ansuz", "Tiwaz", "Berkana", "Ehwaz"],
-    "FUOCO": ["Dagaz", "Othila", "Fehu", "Thurisaz", "Nauthiz", "Eihwaz"],
-    "SPAZIO": ["Algiz", "Dagaz", "Perthro", "Eihwaz"],
+    "TERRA": list(map(canon_rune, ["Othala", "Wunjo", "Isa", "Uruz", "Jera"])),
+    "ACQUA": list(map(canon_rune, ["Ingwaz", "Raidho", "Hagalaz", "Perthu", "Laguz"])),
+    "ARIA":  list(map(canon_rune, ["Teiwaz", "Sowulo", "Ansuz", "Ehwaz"])),
+    "FUOCO": list(map(canon_rune, ["Kaunaz", "Dagaz", "Nauthiz", "Mannaz", "Thurisaz"])),
+    "SPAZIO": list(map(canon_rune, ["Berkana", "Algiz", "Gebo", "Ehwaz", "Fehu"])),
 }
 
-# ✅ frasi per tutte le rune usate nelle liste sopra
+# Frasi per tutte le rune usate sopra
 RUNE_VARIANTS_IT = {
-    "Algiz": [
-        "Sei protetta mentre resti fedele a te.",
-        "Oggi lo scudo è la tua verità.",
-        "Cammina con dignità: la protezione ti segue.",
-        "Non temere: ciò che è tuo è custodito.",
-    ],
-    "Eihwaz": [
-        "Tra radice e cielo: sei il ponte.",
-        "Resisti senza irrigidirti: la via si apre.",
-        "Il limite è una soglia, non un muro.",
-        "Oggi la trasformazione lavora in profondità.",
-    ],
-    "Uruz": [
-        "La forza è già in te: usala senza forzarla.",
-        "Oggi un passo deciso basta a spostare montagne.",
-        "Forza non è muscoli: è presenza totale.",
-        "Il tuo istinto è la bussola migliore.",
+    "Othila": [
+        "Riconosci ciò che ti appartiene davvero.",
+        "Torna alla radice: lì c'è forza.",
+        "Ciò che è tuo non si perde.",
+        "Proteggi i tuoi confini con amore.",
     ],
     "Wunjo": [
         "La gioia arriva quando smetti di inseguirla.",
         "Oggi il sorriso è già dentro.",
         "La gioia non si insegue: si respira.",
-        "Sii felice senza motivo: è potere puro.",
-    ],
-    "Berkana": [
-        "Proteggi ciò che nasce, anche se è fragile.",
-        "La crescita lenta è la più forte.",
-        "Accogli il nuovo senza fretta.",
-        "Lascia che fiorisca nel tuo silenzio.",
-    ],
-    "Othila": [
-        "Riconosci ciò che ti appartiene davvero.",
-        "Torna alla radice: lì c'è forza.",
-        "Ciò che è tuo non si perde.",
-        "Onora l'eredità, ma crea il tuo ramo.",
+        "Lascia spazio al piacere semplice.",
     ],
     "Isa": [
         "Fermati. Nel silenzio trovi chiarezza.",
         "La pausa è potere.",
-        "Non muoverti: ascolta il vuoto.",
-        "Lascia che la verità si sedimenti.",
+        "Rallenta: la verità si deposita da sola.",
+        "Il gelo protegge da scelte impulsive.",
+    ],
+    "Uruz": [
+        "La forza è già in te: usala senza forzarla.",
+        "Oggi un passo deciso basta a spostare montagne.",
+        "Forza è presenza totale, non sforzo.",
+        "Il tuo istinto è la bussola migliore.",
     ],
     "Jera": [
         "Ogni cosa arriva nel tempo giusto. Abbi fiducia.",
         "La ruota gira lenta, ma gira.",
-        "Oggi il tempo lavora per te.",
         "Non forzare: la stagione sa.",
-    ],
-    "Perthro": [
-        "Il mistero non va risolto: va attraversato.",
-        "Accetta l'ignoto: è il tuo alleato.",
-        "Un velo si alza piano: guarda.",
-        "Rimani nel passaggio: la trasformazione è in atto.",
-    ],
-    "Laguz": [
-        "Lascia scorrere. La risposta arriva senza sforzo.",
-        "Non combattere la corrente: vai con lei.",
-        "L'intuizione è la tua corrente.",
-        "Non afferrare: l'onda ti porta.",
+        "Oggi il tempo lavora per te.",
     ],
     "Ingwaz": [
         "Il seme è pronto: ora può diventare vita.",
@@ -139,17 +138,35 @@ RUNE_VARIANTS_IT = {
         "Scegli la direzione, poi fidati della strada.",
         "Il movimento è una preghiera.",
     ],
-    "Gebo": [
-        "Dare e ricevere sono lo stesso gesto.",
-        "L'equilibrio è nel tuo cuore.",
-        "La connessione è reciproca.",
-        "Oggi un dono torna in altra forma.",
-    ],
     "Hagalaz": [
         "Il cambiamento rompe ciò che non serve più.",
         "Lascia che cada: rinasci.",
         "Nel caos c'è un ordine nascosto.",
         "Oggi la tempesta pulisce l’aria.",
+    ],
+    "Perthro": [
+        "Il mistero non va risolto: va attraversato.",
+        "Accetta l'ignoto: è il tuo alleato.",
+        "Un velo si alza piano: guarda.",
+        "Rimani nel passaggio: la trasformazione è in atto.",
+    ],
+    "Laguz": [
+        "Lascia scorrere. La risposta arriva senza sforzo.",
+        "Non combattere la corrente: vai con lei.",
+        "L'intuizione è la tua corrente.",
+        "Non afferrare: l'onda ti porta.",
+    ],
+    "Tiwaz": [
+        "Accendi il coraggio: una scelta ti libera.",
+        "Agisci con rettitudine: la via si apre.",
+        "Scegli ciò che è giusto, non ciò che è facile.",
+        "La decisione è la tua forza.",
+    ],
+    "Sowilo": [
+        "La luce è dalla tua parte. Avanza.",
+        "Non nasconderti: splendi.",
+        "Usa il giorno: è un alleato.",
+        "Lascia che la tua energia illumini.",
     ],
     "Ansuz": [
         "Ascolta: la parola giusta arriva dal vento.",
@@ -157,17 +174,17 @@ RUNE_VARIANTS_IT = {
         "Parla solo quando senti presenza.",
         "Oggi la verità si dice con delicatezza.",
     ],
-    "Tiwaz": [
-        "Accendi il coraggio: una scelta ti libera.",
-        "Agisci con rettitudine: la via si apre.",
-        "La decisione è la tua forza.",
-        "Scegli ciò che è giusto, non ciò che è facile.",
-    ],
     "Ehwaz": [
         "Avanza: il cambiamento si muove con te.",
         "Oggi fidati della collaborazione: non sei sola.",
         "Il ritmo giusto ti porta lontano.",
         "Muoviti in armonia: l’energia ti sostiene.",
+    ],
+    "Kenaz": [
+        "Una scintilla illumina ciò che era nascosto.",
+        "Oggi vedi chiaro.",
+        "Accendi la creatività e cambia il quadro.",
+        "Porta luce dove prima c’era dubbio.",
     ],
     "Dagaz": [
         "Una nuova visione si apre ora.",
@@ -175,11 +192,17 @@ RUNE_VARIANTS_IT = {
         "La luce cambia tutto, anche te.",
         "Oggi l’alba nasce dentro.",
     ],
-    "Fehu": [
-        "Ciò che possiedi cresce se lo condividi con consapevolezza.",
-        "La vera ricchezza è invisibile: inizia dal cuore.",
-        "Non trattenere: l’abbondanza ama il flusso.",
-        "Oggi semina fiducia: il raccolto è vicino.",
+    "Nauthiz": [
+        "La necessità rivela la via.",
+        "Oggi il bisogno ti guida.",
+        "La stretta è una lezione: ascoltala.",
+        "Sopravvivi: e poi fiorisci.",
+    ],
+    "Mannaz": [
+        "La tua forza cresce quando ti ricordi chi sei.",
+        "Oggi scegli l’umano: presenza, verità, relazione.",
+        "Specchiati negli altri senza perderti.",
+        "Il coraggio più grande è essere autentici.",
     ],
     "Thurisaz": [
         "Proteggi il confine: scegli cosa far entrare.",
@@ -187,11 +210,29 @@ RUNE_VARIANTS_IT = {
         "Oggi taglia ciò che ti consuma.",
         "Il coraggio è dire NO quando serve.",
     ],
-    "Nauthiz": [
-        "La necessità rivela la via.",
-        "Oggi il bisogno ti guida.",
-        "La stretta è una lezione: ascoltala.",
-        "Sopravvivi: e poi fiorisci.",
+    "Berkana": [
+        "Proteggi ciò che nasce, anche se è fragile.",
+        "La crescita lenta è la più forte.",
+        "Accogli il nuovo senza fretta.",
+        "Lascia che fiorisca nel tuo silenzio.",
+    ],
+    "Algiz": [
+        "Sei protetta mentre resti fedele a te.",
+        "Oggi lo scudo è la tua verità.",
+        "Cammina con dignità: la protezione ti segue.",
+        "Non temere: ciò che è tuo è custodito.",
+    ],
+    "Gebo": [
+        "Dare e ricevere sono lo stesso gesto.",
+        "L'equilibrio è nel tuo cuore.",
+        "La connessione è reciproca.",
+        "Oggi un dono torna in altra forma.",
+    ],
+    "Fehu": [
+        "Ciò che possiedi cresce se lo condividi con consapevolezza.",
+        "La vera ricchezza è invisibile: inizia dal cuore.",
+        "Non trattenere: l’abbondanza ama il flusso.",
+        "Oggi semina fiducia: il raccolto è vicino.",
     ],
 }
 
@@ -246,7 +287,7 @@ def oracle():
 @app.get("/view")
 def view():
     elemento = request.args.get("elemento", "RANDOM")
-    data = genera_oracolo(elemento, nonce=None)  # oracolo quotidiano sul primo caricamento
+    data = genera_oracolo(elemento, nonce=None)  # oracolo quotidiano al primo caricamento
 
     html = """<!doctype html>
 <html lang="it">
