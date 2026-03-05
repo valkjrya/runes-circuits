@@ -142,88 +142,97 @@ RUNE_VARIANTS_IT = {
         "Porta con te solo ciò che serve.",
         "Ogni metro è una lezione.",
         "La destinazione è dentro.",
-        "Vai: il mondo ti aspetta."
-    ],
-    # Aggiungi le altre rune con lo stesso stile (10 frasi ciascuna)
-    # Per brevità, metto solo 3-4 per le restanti – tu espandi!
-    "Gebo": [
-        "Dare e ricevere sono lo stesso gesto.",
+        "Vai: il mondo ti aspetta." "Dare e ricevere sono lo stesso gesto.",
         "Oggi un regalo torna indietro.",
         "L'equilibrio è nel tuo cuore.",
         "Non contare: scambia.",
         "La connessione è reciproca.",
         "Un sì oggi, un sì domani.",
         "Il dono è la tua forza.",
-        "Lascia che il cerchio si chiuda." "La gioia arriva quando smetti di cercarla.",
+        "Lascia che il cerchio si chiuda.",
+        "Oggi offri, e ricevi in silenzio.",
+        "Il legame è già lì: rafforzalo." "La gioia arriva quando smetti di cercarla.",
         "Oggi il sorriso è già dentro.",
         "Sii felice senza motivo.",
         "La luce è tua, accoglila.",
         "La gioia non si insegue: si respira.",
         "Un momento basta.",
         "Oggi tutto è perfetto così.",
-        "Ridi: l'universo ride con te." "Una scintilla illumina ciò che era nascosto.",
+        "Ridi: l'universo ride con te.",
+        "La felicità è un atto semplice.",
+        "Lascia entrare il calore." "Una scintilla illumina ciò che era nascosto.",
         "Oggi vedi chiaro.",
         "Il fuoco interiore si accende.",
         "La torcia è nella tua mano.",
         "Non temere l'ombra: accendila.",
         "La conoscenza brucia leggera.",
         "Oggi un'idea cambia tutto.",
-        "Illumina senza bruciare."
-    ],
-    "Sowilo": [
-        "La luce è dalla tua parte. Avanza.",
+        "Illumina senza bruciare.",
+        "La rivelazione è qui.",
+        "Guarda: tutto è visibile ora." "La luce è dalla tua parte. Avanza.",
         "Oggi il sole ti segue.",
         "Non nasconderti: splendi.",
         "La vittoria è già tua.",
         "Il giorno è lungo: usalo.",
         "La tua ombra si ritira.",
         "Avanti, la luce guida.",
-        "Oggi tutto è possibile."
-    ],
-    "Tiwaz": [
-        "Accendi il coraggio: una scelta ti libera.",
+        "Oggi tutto è possibile.",
+        "Il calore ti sostiene.",
+        "Brilla: il mondo ti vede."         "Accendi il coraggio: una scelta ti libera.",
         "Oggi decidi e vola.",
         "La spada è la tua volontà.",
         "Non dubitare: agisci.",
         "Il giusto è già dentro.",
         "Una scelta, una vita nuova.",
         "Il coraggio non aspetta.",
-        "Sii la tua legge." "Il cambiamento rompe ciò che non serve più.",
+        "Sii la tua legge.",
+        "La giustizia è il tuo scudo.",
+        "Oggi scegli con forza." "Il cambiamento rompe ciò che non serve più.",
         "Oggi il vecchio crolla.",
         "La grandine pulisce.",
         "Lascia che cada: rinasci.",
         "Il caos è ordine nascosto.",
         "Non resistere: trasforma.",
         "La rottura è liberazione.",
-        "Oggi il mondo si resetta." "Sei protetta mentre resti fedele a te.",
+        "Oggi il mondo si resetta.",
+        "Il vento forte porta novità.",
+        "Accogli la tempesta." "Sei protetta mentre resti fedele a te.",
         "Oggi il tuo scudo è vivo.",
         "Non temere: sei guardata.",
         "La protezione è dentro.",
         "Resta vera: niente ti tocca.",
         "Il corno ti copre.",
         "Fidati del tuo confine.",
-        "Sei al sicuro ora." "Una nuova visione si apre ora.",
+        "Sei al sicuro ora.",
+        "La guardia è sempre attiva.",
+        "Il tuo centro è inviolabile." "Una nuova visione si apre ora.",
         "Oggi l'alba è dentro.",
         "Il buio finisce.",
         "Vedi oltre.",
         "La luce cambia tutto.",
         "Un clic: nuovo giorno.",
         "La prospettiva si ribalta.",
-        "Oggi rinasci." "La necessità rivela la via.",
+        "Oggi rinasci.",
+        "Il giorno nuovo ti chiama.",
+        "Guarda con occhi freschi." "La necessità rivela la via.",
         "Oggi il bisogno ti guida.",
         "Non c'è scelta: c'è destino.",
         "Il fuoco della fame illumina.",
         "Sopravvivi: cresci.",
         "La mancanza è maestra.",
         "Oggi ciò che manca ti salva.",
-        "La via è stretta, ma vera." "Riconosci ciò che ti appartiene davvero.",
+        "La via è stretta, ma vera.",
+        "Il limite è la tua forza.",
+        "Accetta: e troverai." "Riconosci ciò che ti appartiene davvero.",
         "Oggi la casa è dentro.",
         "Il tuo sangue parla.",
         "Torna alla radice.",
         "Ciò che è tuo non si perde.",
         "La famiglia è eredità viva.",
         "Accogli il tuo posto.",
-        "Oggi sei a casa."
+        "Oggi sei a casa.",
+        "L'eredità è il tuo potere.",
+        "Ritrova il tuo centro."
     ]
 }
 
@@ -242,11 +251,11 @@ def genera_oracolo(elemento):
     simbolo = RUNE_SYMBOL.get(runa, "ᚱ")
 
     # Scegli una variante diversa ogni giorno
-    varianti = RUNE_VARIANTS_IT.get(runa, )
+    varianti = RUNE_VARIANTS_IT.get(runa, ["Messaggio base per oggi."])
     msg_it = rng.choice(varianti)
 
-    # Per inglese: placeholder semplice (puoi fare liste separate dopo)
-    msg_en = f"Today: {msg_it.lower().replace('oggi', 'today').replace('la', 'the')}"
+    # Inglese: versione semplice (puoi migliorare dopo)
+    msg_en = f"Today: {msg_it.lower().replace('oggi', 'today').replace('la', 'the').replace('il', 'the')}"
 
     return {
         "elemento": elemento,
@@ -269,7 +278,7 @@ def oracle():
     return jsonify(genera_oracolo(elemento))
 
 # =========================
-# UI (lasciata uguale)
+# UI
 # =========================
 @app.get("/")
 @app.get("/view")
@@ -300,7 +309,7 @@ font-family:system-ui,Segoe UI,Arial;">
 <div style="display:flex;align-items:center;gap:14px;">
   <div id="runa-symbol" style="font-size:42px;">{e(data )}</div>
   <div id="runa-name" style="font-size:36px;font-weight:bold;">
-    {e(data )}
+    {e(data["runa"])}
   </div>
 </div>
 
