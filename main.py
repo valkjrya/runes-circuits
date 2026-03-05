@@ -35,7 +35,6 @@ RUNE_SYMBOL = {
     "Berkano": "ᛒ", "Laguz": "ᛚ", "Dagaz": "ᛞ", "Othila": "ᛟ",
 }
 
-# mappa rune per elemento (minimo funzionante)
 RUNE_PER_ELEMENTO = {
     "TERRA": ["Fehu", "Uruz", "Berkano", "Jera", "Othila"],
     "ACQUA": ["Laguz", "Perthro", "Isa", "Eihwaz"],
@@ -44,11 +43,11 @@ RUNE_PER_ELEMENTO = {
     "SPAZIO": ["Dagaz", "Algiz", "Perthro", "Eihwaz"],
 }
 
-# frasi IT (puoi espandere: anche 2000 frasi, basta che siano stringhe in lista)
 RUNE_VARIANTS_IT = {
     "Fehu": [
         "Ciò che possiedi cresce se lo condividi con consapevolezza.",
         "La vera ricchezza è invisibile: inizia dal cuore.",
+        "Un gesto generoso oggi, un raccolto domani.",
         "Non trattenere: l'abbondanza ama il flusso.",
         "La porta della prosperità si apre con gratitudine.",
         "Oggi semina fiducia: il raccolto è vicino.",
@@ -62,10 +61,10 @@ RUNE_VARIANTS_IT = {
     ],
     "Berkano": [
         "Proteggi ciò che nasce, anche se è fragile.",
+        "Un germoglio ha bisogno di te: coprilo.",
+        "Oggi custodisci il tuo sogno: non esporlo a tutti.",
         "La crescita lenta è la più forte.",
-        "Accogli il nuovo senza fretta.",
         "Lascia che fiorisca nel tuo silenzio.",
-        "Il seme che curi oggi ti salva domani.",
     ],
     "Jera": [
         "Ogni cosa arriva nel tempo giusto. Abbi fiducia.",
@@ -76,8 +75,8 @@ RUNE_VARIANTS_IT = {
     ],
     "Laguz": [
         "Lascia scorrere. La risposta arriva senza sforzo.",
+        "Oggi l'acqua lava via il peso.",
         "Non combattere la corrente: vai con lei.",
-        "Le emozioni si muovono: seguile.",
         "L'intuizione è la tua corrente.",
         "Non afferrare: l'onda ti porta.",
     ],
@@ -88,6 +87,13 @@ RUNE_VARIANTS_IT = {
         "Rimani nel passaggio: la trasformazione è in atto.",
         "Respira nel vuoto: lì nasce il nuovo.",
     ],
+    "Eihwaz": [
+        "Tra radice e cielo: sei il ponte.",
+        "Resisti senza irrigidirti: la via si apre.",
+        "La stabilità è un atto interiore.",
+        "Il limite è una soglia, non un muro.",
+        "La trasformazione è già iniziata.",
+    ],
     "Isa": [
         "Fermati. Nel silenzio trovi chiarezza.",
         "La pausa è potere.",
@@ -95,26 +101,19 @@ RUNE_VARIANTS_IT = {
         "Il gelo ti protegge da scelte impulsive.",
         "Lascia che la verità si sedimenti.",
     ],
-    "Eihwaz": [
-        "Resisti senza irrigidirti: la via si apre.",
-        "Tra radice e cielo: sei il ponte.",
-        "Oggi la stabilità è un atto interiore.",
-        "Il limite è una soglia, non un muro.",
-        "La trasformazione è già iniziata.",
-    ],
     "Ansuz": [
         "Ascolta: la parola giusta arriva dal vento.",
-        "Oggi la verità si dice con delicatezza.",
         "Una frase può aprire un portale.",
         "Il messaggio è già qui: leggilo tra le righe.",
         "Parla solo quando senti presenza.",
+        "Oggi la verità si dice con delicatezza.",
     ],
     "Raido": [
         "Il viaggio è iniziato: muoviti con intenzione.",
         "Oggi un passo cambia tutto.",
         "Non correre: cammina consapevole.",
-        "Il movimento è una preghiera.",
         "Scegli la direzione, poi fidati della strada.",
+        "Il movimento è una preghiera.",
     ],
     "Gebo": [
         "Dare e ricevere sono lo stesso gesto.",
@@ -124,7 +123,7 @@ RUNE_VARIANTS_IT = {
         "La connessione è reciproca.",
     ],
     "Wunjo": [
-        "La gioia arriva quando smetti di inseguirla.",
+        "La gioia arriva quando smetti di cercarla.",
         "Oggi il sorriso è già dentro.",
         "Sii felice senza motivo.",
         "La luce è tua: accoglila.",
@@ -132,24 +131,24 @@ RUNE_VARIANTS_IT = {
     ],
     "Kenaz": [
         "Una scintilla illumina ciò che era nascosto.",
-        "Oggi vedi chiaro: usa la tua torcia.",
-        "Accendi la creatività, e cambia il quadro.",
+        "Oggi vedi chiaro.",
+        "Il fuoco interiore si accende.",
         "Non temere l'ombra: portaci luce.",
-        "Il fuoco interiore sa la strada.",
+        "Accendi la creatività e cambia il quadro.",
     ],
     "Sowilo": [
         "La luce è dalla tua parte. Avanza.",
-        "Non nasconderti: splendi.",
         "Oggi il sole ti segue.",
+        "Non nasconderti: splendi.",
         "La vittoria è già tua se resti vero.",
         "Usa il giorno: è un alleato.",
     ],
     "Tiwaz": [
         "Accendi il coraggio: una scelta ti libera.",
         "Agisci con rettitudine: la via si apre.",
-        "La tua volontà è una lama pulita.",
         "Oggi scegli ciò che è giusto, non ciò che è facile.",
         "La decisione è la tua forza.",
+        "La tua volontà è una lama pulita.",
     ],
     "Hagalaz": [
         "Il cambiamento rompe ciò che non serve più.",
@@ -157,13 +156,6 @@ RUNE_VARIANTS_IT = {
         "Nel caos c'è un ordine nascosto.",
         "Oggi la grandine pulisce l'aria.",
         "Non resistere al vero: trasformalo.",
-    ],
-    "Nauthiz": [
-        "La necessità rivela la via.",
-        "Oggi il bisogno ti guida.",
-        "La stretta è una lezione: ascoltala.",
-        "La fame di verità accende il passo.",
-        "Sopravvivi: e poi fiorisci.",
     ],
     "Algiz": [
         "Sei protetta mentre resti fedele a te.",
@@ -176,42 +168,40 @@ RUNE_VARIANTS_IT = {
         "Una nuova visione si apre ora.",
         "Oggi l'alba è dentro di te.",
         "Il buio finisce: cambia prospettiva.",
-        "La luce cambia tutto, anche te.",
         "Tra notte e giorno: scegli il risveglio.",
+        "La luce cambia tutto, anche te.",
+    ],
+    "Nauthiz": [
+        "La necessità rivela la via.",
+        "Oggi il bisogno ti guida.",
+        "La stretta è una lezione: ascoltala.",
+        "Sopravvivi: e poi fiorisci.",
+        "La fame di verità accende il passo.",
     ],
     "Othila": [
         "Riconosci ciò che ti appartiene davvero.",
-        "La casa è un luogo interiore.",
         "Torna alla radice: lì c'è forza.",
+        "La casa è un luogo interiore.",
         "Ciò che è tuo non si perde.",
         "Onora l'eredità, ma crea il tuo ramo.",
     ],
 }
 
-def _norm_elemento(raw: str) -> str:
-    if not raw:
-        return "RANDOM"
-    return raw.strip().upper()
-
-def _daily_rng(elemento: str) -> random.Random:
-    oggi = dt.date.today().isoformat()
-    seed = f"runa-{elemento}-{oggi}"
-    return random.Random(seed)
-
 def genera_oracolo(elemento: str) -> dict:
-    elemento = _norm_elemento(elemento)
+    elemento = (elemento or "RANDOM").strip().upper()
     if elemento not in ELEMENTI:
         elemento = random.choice(ELEMENTI)
 
-    rng = _daily_rng(elemento)
+    oggi = dt.date.today().isoformat()
+    seed = f"runa-{elemento}-{oggi}"
+    rng = random.Random(seed)
 
     rune_list = RUNE_PER_ELEMENTO.get(elemento) or list(RUNE_SYMBOL.keys())
     runa = rng.choice(rune_list)
-
     simbolo = RUNE_SYMBOL.get(runa, "ᚱ")
+
     varianti = RUNE_VARIANTS_IT.get(runa) or ["Oggi ascolta. La runa parla in silenzio."]
     msg_it = rng.choice(varianti)
-
     msg_en = "Today: " + msg_it.replace("Oggi", "Today").replace("oggi", "today")
 
     return {
@@ -222,7 +212,7 @@ def genera_oracolo(elemento: str) -> dict:
         "runa_symbol": simbolo,
         "messaggio_it": msg_it,
         "messaggio_en": msg_en,
-        "seed": f"runa-{elemento}-{dt.date.today().isoformat()}",
+        "seed": seed,
         "ts": dt.datetime.utcnow().isoformat(timespec="seconds") + "Z",
     }
 
@@ -237,7 +227,7 @@ def view():
     elemento = request.args.get("elemento", "RANDOM")
     data = genera_oracolo(elemento)
 
-    def e(x):  # escape HTML
+    def e(x):
         return escape(str(x))
 
     html = f"""<!doctype html>
@@ -330,6 +320,5 @@ def view():
     return make_response(html)
 
 if __name__ == "__main__":
-    # In Cloud Run in genere parte gunicorn, ma in locale è utile.
     port = int(os.environ.get("PORT", "8080"))
     app.run(host="0.0.0.0", port=port, debug=True)
